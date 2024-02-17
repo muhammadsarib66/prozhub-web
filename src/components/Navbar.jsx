@@ -46,7 +46,7 @@ function Navbar() {
   };
   return (
     <>
-      <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-20 items-center bg-white ">
+      <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-fit pb-2 items-center bg-white ">
         <div className="hidden  container md:flex justify-between w-full items-center pt-3">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
@@ -85,7 +85,7 @@ function Navbar() {
                     data-bs-toggle=""
                     aria-expanded="false"
                   >
-                    <img
+                    <img 
                       src={userImg}
                       
                       alt="logo"

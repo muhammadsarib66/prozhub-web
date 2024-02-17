@@ -8,7 +8,7 @@ import moment from "moment";
 
 const RequestService = () => {
   const dispatch = useDispatch();
-  const { isLoading, MyRequestsDetail } = useSelector(
+  const { isLoading, MyRequestsDetail , SingleReqObj } = useSelector(
     (state) => state.MyRequestSlicer
   );
   // eslint-disable-next-line no-unused-vars
@@ -20,7 +20,7 @@ const RequestService = () => {
 
   useEffect(() => {
     if (MyRequestsDetail.length > 0) {
-      setSeeRequest(MyRequestsDetail[0]);
+      setSeeRequest(SingleReqObj);
     }
     dispatch(GetMyRequestApi());
     // eslint-disable-next-line react-hooks/exhaustive-deps
