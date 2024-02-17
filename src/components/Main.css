@@ -1,15 +1,18 @@
 .main {
-  padding: 20px;
+  padding: 60px 0;
   width: 100%;
   height: 100vh;
-  position: relative;
+
   overflow: hidden;
   background-color: rgba(48, 98, 217, 0.2);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
 }
 .detail {
-  position: absolute;
-  top: 25%;
-  left: 15%;
+  /* position: absolute; */
+
   z-index: 1;
 }
 .detail h1 {
@@ -29,11 +32,12 @@
   /* border: 1px solid gray; */
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  padding: 0 10px;
+  padding: 2px 5px;
   border-radius: 8px;
   flex-direction: row;
   display: inline-flex;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   background-color: #fff;
   /* justify-content: space-between; */
 }
@@ -54,10 +58,14 @@
   width: 100%;
 }
 .box {
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  width: 70%;
+  /* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; */
+  width: 100%;
   border-radius: 8px;
+}
+.box input {
+  border: 0px !important;
+  width: 100%;
 }
 .box2 {
   width: 29%;
@@ -88,7 +96,7 @@
   padding: 10px 15px;
   transition: all ease-in-out 0.3s;
   color: #fff;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 .search-btn:hover {
   background-color: black;
@@ -105,79 +113,11 @@ li a {
   text-decoration: none;
   color: unset;
 }
-.round1 {
-  height: 300px;
-  width: 300px;
-  border-radius: 100%;
-  position: absolute;
-  background: linear-gradient(
-    40deg,
-    rgba(48, 98, 217, 1) 0%,
-    rgba(48, 98, 217, 1) 35%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  bottom: -10%;
-  left: -5%;
-}
-.round2 {
-  height: 400px;
-  width: 400px;
-  border-radius: 100%;
-  position: absolute;
-  background: linear-gradient(
-    40deg,
-    rgba(48, 98, 217, 1) 0%,
-    rgba(48, 98, 217, 1) 35%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  top: -10%;
-  left: 20%;
-}
-.round3 {
-  height: 350px;
-  width: 350px;
-  border-radius: 100%;
-  position: absolute;
-  background: linear-gradient(
-    220deg,
-    rgba(48, 98, 217, 1) 0%,
-    rgba(48, 98, 217, 1) 35%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  top: -15%;
-  right: -5%;
-}
-.round4 {
-  height: 450px;
-  width: 450px;
-  border-radius: 100%;
-  position: absolute;
-  background: linear-gradient(
-    320deg,
-    rgba(48, 98, 217, 1) 0%,
-    rgba(48, 98, 217, 1) 25%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  bottom: -35%;
-  right: 18%;
-}
-.round5 {
-  height: 200px;
-  width: 200px;
-  border-radius: 100%;
-  position: absolute;
-  background: linear-gradient(
-    120deg,
-    rgba(48, 98, 217, 1) 0%,
-    rgba(48, 98, 217, 1) 25%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  top: -5%;
-  left: -5%;
-}
+
 .suggestion-list {
   background-color: white;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
 }
 .suggestion-list li {
   /* color: #fff; */
