@@ -1,21 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/Login.css";
 import logo from "../images/logo1.png";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
-import User from "../data/User";
-import { useSelector, useDispatch } from "react-redux";
-import { setUserLogin } from "../features/Slicers/Slicer";
-import { useNavigate } from "react-router-dom";
-import { LoginApi, SignUpApi } from "../features/Slicers/LoginSlicer";
-import { ToastContainer, toast } from "react-toastify";
+import {  SignUpApi } from "../features/Slicers/LoginSlicer";
+import {  toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 // import { Navigate } from "react-router-dom";
 function SignUp() {
-  const { isLoggedIn } = useSelector((state) => state.Slicer);
-  const { userLogin, IsUserLogin } = useSelector((state) => state.LoginSlicer);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [fullName, setName] = useState("");
   const [phoneNumber, setPhone] = useState("");
   const [email, setEmail] = useState("");

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from "react-redux";
 import { handleCloseFinalReq } from '../features/Slicers/SearchSeviceSlicer';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { NewRequestApi } from '../features/Slicers/NewRequestSlicer';
 import Loading from '../screens/Loading';

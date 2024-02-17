@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -12,7 +13,6 @@ import ViewAll from "./screens/ViewAll screen";
 import Foooter from "./components/Foooter";
 import ServiceDetail from "./screens/ServiceDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import {fetchProzHubApi} from "./features/Slicers/Slicer"
 import AcountSetting from "./screens/AccountSetting/AcountSetting";
 import RequestService from "./screens/RequestService";
@@ -23,11 +23,11 @@ import { GetMyRequestApi } from "./features/Slicers/MyRequestSlicer";
 import { ToastContainer } from "react-toastify";
 function App() {
   const dispatch = useDispatch();
-  const { isLoggedIn  } = useSelector((state) => state.Slicer);
+  // const { isLoggedIn  } = useSelector((state) => state.Slicer);
   const { isLoading  } = useSelector((state) => state.LoginSlicer);
-  const {getService} = useSelector(state=>state.SearchSeviceSlicer )
+  // const {getService} = useSelector(state=>state.SearchSeviceSlicer )
 
-  const {isUserLogout ,IsUserLogin} = useSelector((state)=> state.LoginSlicer);
+  const {isUserLogout} = useSelector((state)=> state.LoginSlicer);
   const Token =sessionStorage.getItem("token");
   // const {LoginDet} = useSelector((state)=>state.LoginSlicer)
   // console.log(IsUserLogin);

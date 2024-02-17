@@ -93,7 +93,7 @@ function Navbar() {
                     />
                     <span onClick={toggleDropdown}>
 
-                    <i  class="fa-solid fa-caret-down"></i>
+                    <i  className="fa-solid fa-caret-down"></i>
                     </span>
                     {isOpen2 && (
                       <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-3">

@@ -4,7 +4,7 @@ import { baseUrl } from "./Slicer";
 
 export const SerchServiceApi = createAsyncThunk(
   "prozhub/serchService",
-  async (searchvalue, {}) => {
+  async (searchvalue) => {
     try{
       const response = await axios.get(
         `${baseUrl}services/search-services?q=${searchvalue}`
