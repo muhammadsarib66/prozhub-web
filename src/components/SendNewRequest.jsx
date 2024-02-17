@@ -89,7 +89,7 @@ function SendNewRequest() {
             Create Request
           </Button>
         </Modal.Footer>
-      <ToastContainer  position='bottom-right'/>
+     
     {isLoading && <Loading/> }
 
       </Modal>

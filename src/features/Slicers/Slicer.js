@@ -1,56 +1,56 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const baseUrl = 'http://104.207.133.129:3000/'
-// export const baseUrl = 'http://192.168.226.91:3000/'
+export const baseUrl = "http://104.207.133.129:3000/";
 
-export const fetchProzHubApi = createAsyncThunk('prozhub/getServices',async () => {
-     return await axios.get(`${baseUrl}services/get-services`).then((resp)=> resp.data.data).catch((err)=> err)
-    // return response.data.data
-}
-)
+export const fetchProzHubApi = createAsyncThunk(
+  "prozhub/getServices",
+  async () => {
+    return await axios
+      .get(`${baseUrl}services/get-services`)
+      .then((resp) => {
+        return resp.data.data;
+      })
+      .catch((err) => err);
+  }
+);
 
 const initialState = {
   testValue: 1,
-  isLoading : false,
-  isError : false,
-  isLoggedIn : false,
+  isLoading: false,
+  isError: false,
+  isLoggedIn: false,
   reviews: [],
-  getAllServices : []
-  
+  getAllServices: [],
 };
 
 const Slicer = createSlice({
   name: "review",
   initialState,
   reducers: {
-    setUserLogin : (state , action)=>{
-      state.isLoggedIn = action.payload
-    }
+    setUserLogin: (state, action) => {
+      state.isLoggedIn = action.payload;
+    },
   },
-  extraReducers : (builder)=>{
+  extraReducers: (builder) => {
     builder.addCase(fetchProzHubApi.pending, (state, action) => {
-        state.isLoading = true
-        console.log('app load horhi')
-        
-    })
+      state.isLoading = true;
+      // console.log("app load horhi");
+    });
     builder.addCase(fetchProzHubApi.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.getAllServices = action.payload
-        console.log('app load hogai')
-        console.log(state.getAllServices)
-
-    })
+      state.isLoading = false;
+      state.getAllServices = action.payload;
+      // console.log("app load hogai");
+      // console.log(state.getAllServices);
+    });
     builder.addCase(fetchProzHubApi.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
-        state.reviews = []
-        console.log('app error arha hai ')
-
-    })
-
-  }
+      state.isLoading = false;
+      state.isError = true;
+      state.reviews = [];
+      // console.log("app error arha hai ");
+    });
+  },
 });
 
-export const {setUserLogin} = Slicer.actions;
+export const { setUserLogin } = Slicer.actions;
 export default Slicer.reducer;

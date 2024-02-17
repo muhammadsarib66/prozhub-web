@@ -18,9 +18,7 @@ export const NewRequestApi = createAsyncThunk(
           }
         };
         const response = await axios.post(`${baseUrl}requests/create-new-request`, newRequest,config);
-        // console.log(response);
         toast.success("Request Created");
-        // console.log("created Requestes ");
 
         return response.data;
       } catch (error) {
@@ -42,9 +40,6 @@ export const NewRequestApi = createAsyncThunk(
     name: "NewRequest",
     initialState,
     reducers: {
-    //   HandleGetReqData: (state, action) => {
-    //     state.getReqData = action.payload;
-    //   }
     },
     extraReducers: (builder) => {
       builder.addCase(NewRequestApi.pending, (state, action) => {
@@ -54,7 +49,6 @@ export const NewRequestApi = createAsyncThunk(
       builder.addCase(NewRequestApi.fulfilled, (state, action) => {
         state.isLoading = false;
         console.log(action.payload);
-        // state.getReqData = action.payload;
         console.log("Request Created");
       });
       builder.addCase(NewRequestApi.rejected, (state, action) => {
@@ -62,11 +56,10 @@ export const NewRequestApi = createAsyncThunk(
         state.IsError = true;
         console.log("Request Failed");
   
-        // Store the error message instead of the entire AxiosError object
         state.error = action.error.message; 
       });
     }
   });
 
-    export const {HandleGetReqData} = NewRequestSlicer.actions;
+    export const {} = NewRequestSlicer.actions;
     export default NewRequestSlicer.reducer;

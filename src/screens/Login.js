@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUserLogin } from "../features/Slicers/Slicer";
 import { useNavigate } from "react-router-dom";
 import { LoginApi } from "../features/Slicers/LoginSlicer";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { GetUser } from "../features/Slicers/LoginSlicer";
 // import { Navigate } from "react-router-dom";
 function Login() {
@@ -47,12 +47,16 @@ function Login() {
    
   };
  
-  useEffect(() => {
-    const token = sessionStorage.getItem('token');
-    if (token) {
-      navigate('/*');
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const token = sessionStorage.getItem('token');
+  //   if (token) {
+  //     toast.success("Login Successfull");
+  //     setTimeout(()=>{
+  //       navigate('/*');
+      
+  //     },2000)
+  //   }
+  // }, [navigate]);
  
   return (
     <div>
@@ -97,7 +101,6 @@ function Login() {
         </div>
       </div>
       {/* <Footer /> */}
-      <ToastContainer />
     </div>
   );
 }

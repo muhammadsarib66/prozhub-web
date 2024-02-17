@@ -3,7 +3,6 @@ import { GetMyRequestApi } from "../features/Slicers/MyRequestSlicer";
 import { useDispatch, useSelector } from "react-redux";
 import "./MyRequest.css";
 import Loading from "./Loading";
-import { ToastContainer } from "react-toastify";
 import moment from "moment";
 
 const RequestService = () => {
@@ -19,8 +18,8 @@ const RequestService = () => {
   };
 
   useEffect(() => {
+    setSeeRequest(SingleReqObj);
     if (MyRequestsDetail.length > 0) {
-      setSeeRequest(SingleReqObj);
     }
     dispatch(GetMyRequestApi());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,6 +41,8 @@ const RequestService = () => {
               </button>
             </div>
           </div>
+          {!SingleReqObj && <h2> Dont have any request</h2>}
+          {SingleReqObj &&
           <div className="row   ">
             <div className=" col-sm-4  CardBox  max-h-[90vh] overflow-y-scroll py-2 px-4 rounded-md bg-[#edeef1] ">
               {MyRequestsDetail &&
@@ -161,9 +162,9 @@ const RequestService = () => {
               </div>
             </div>
           </div>
+          }
         </div>
       )}
-      <ToastContainer autoClose={500} limit={2} />
     </div>
   );
 };

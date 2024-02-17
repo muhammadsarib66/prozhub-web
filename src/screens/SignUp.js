@@ -116,7 +116,7 @@ function SignUp() {
         </form>
       </div>
       {/* <Footer /> */}
-      <ToastContainer />
+      
     </div>
   );
 }

@@ -56,7 +56,6 @@ export const GetMyRequestApi = createAsyncThunk(
 
             state.MyRequestsDetail = data;
             state.SingleReqObj = data[0];
-            // console.log(data);
         }
         // console.log("Get Request Successfully");
       });

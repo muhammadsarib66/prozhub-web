@@ -9,6 +9,7 @@ export const SerchServiceApi = createAsyncThunk(
       const response = await axios.get(
         `${baseUrl}services/search-services?q=${searchvalue}`
         );
+        console.log(response.data, 'getservice')
         return response.data;
       }catch(error){
         return error
@@ -49,20 +50,18 @@ const SearchServiceSlicer = createSlice({
   extraReducers: (builder) => {
     builder.addCase(SerchServiceApi.pending, (state, action) => {
       state.isLoading = true;
-      console.log("service load horhi ");
+      // console.log("service load horhi ");
     });
     builder.addCase(SerchServiceApi.fulfilled, (state, action) => {
       state.isLoading = false;
-      // console.log(action.payload)
       state.getService = action.payload;
-      console.log("service load hogai");
-      // console.log(state.getService);
+      // console.log("service load hogai");
     });
     builder.addCase(SerchServiceApi.rejected, (state, action) => {
       state.isLoading = false;
       state.isError = true;
       state.getService = '';
-      console.log("search service error ");
+      // console.log("search service error ");
     });
   },
 });

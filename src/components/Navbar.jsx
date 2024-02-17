@@ -5,7 +5,7 @@ import logo from "../images/logo1.png";
 import { useDispatch } from "react-redux";
 import userImg from "../images/electrician.jpg";
 import { setUserLogout } from "../features/Slicers/LoginSlicer";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import Loading from "../screens/Loading";
 function Navbar() {
   const dispatch = useDispatch();
@@ -46,8 +46,8 @@ function Navbar() {
   };
   return (
     <>
-      <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-fit pb-2 items-center bg-white ">
-        <div className="hidden  container md:flex justify-between w-full items-center pt-3">
+      <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-fit py-1 items-center bg-white ">
+        <div className="hidden  container md:flex justify-between w-full items-center p-0">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
           </Link>
@@ -56,7 +56,7 @@ function Navbar() {
               {token && (
                 <Link className="nav-link" to="/requestservice">
                   My Request
-                </Link>
+              </Link>
               )}
             </li>
             <li className=" cursor-pointer">
@@ -128,7 +128,7 @@ function Navbar() {
           </ul>
         </div>
         {/* responsive Nav */}
-        <div className=" container pt-2 md:hidden flex justify-between items-center">
+        <div className=" duration-300 transition container pt-2 md:hidden flex justify-between items-center">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
           </Link>
@@ -137,9 +137,9 @@ function Navbar() {
           </div>
         </div>
         {
-          <div
+          <div 
             className={` shadow-md md:hidden  ${
-              isDrawerOpen ? "top-20 " : "top-[-1000px]"
+              isDrawerOpen ? "top-20 duration-300 transition " : " duration-300 transition top-[-1000px]"
             } bg-white w-full h-fit pb-4 duration-500 ease-in-out  transition absolute  z-[100000]`}
           >
             <div className="container flex text-start justify-start">
@@ -152,19 +152,27 @@ function Navbar() {
                   )}
                 </li>
                 <li className=" cursor-pointer">
-                  {!isOpen ? (
+                <span onClick={handleOpen} className="">
+                      <Link to="/explore">
+                        Explore 
+                        {/* <i className="fas fa-chevron-down "></i> */}
+                      </Link>
+                    </span>
+                  {/* {!isOpen ? (
                     <span onClick={handleOpen} className="">
                       <Link to="/explore">
-                        Explore <i className="fas fa-chevron-down "></i>
+                        Explore 
+                        <i className="fas fa-chevron-down "></i>
                       </Link>
                     </span>
                   ) : (
                     <span onClick={handleOpen1} className="nav-link">
                       <a className="nav-link" href="/">
-                        Explore <i className="fas fa-chevron-up "></i>
+                        Explore
+                         <i className="fas fa-chevron-up "></i>
                       </a>
                     </span>
-                  )}
+                  )} */}
                 </li>
                 {token ? (
                   <>
@@ -197,7 +205,7 @@ function Navbar() {
         }
       </nav>
 
-      <ToastContainer position="bottom-right" />
+      {/* <ToastContainer position="bottom-right" /> */}
       {isLoading && <Loading />}
     </>
   );

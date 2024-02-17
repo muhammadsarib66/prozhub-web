@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseUrl } from "./Slicer";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 let LoginDet = {};
 let SignUpDet = {};
@@ -17,16 +16,14 @@ export const LoginApi = createAsyncThunk(
       if (LoginDetail === "") return "dont have login details";
 
       const response = await axios.post(`${baseUrl}users/login`, LoginDetail);
-      console.log(response);
-      toast.success("Login Successfull",{autoClose: 500});
       const token = response.data.token;
       sessionStorage.setItem("token", token);
-
+      toast.success("Login Successfull");
+        console.log(response.data)
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message,{autoClose: 500});
-      console.error(error.response.data.message);
-      return error;
+      toast.error(error.response.data.message,{autoClose: 800});
+      return error.response.data.message;
     }
   }
 );
@@ -42,13 +39,12 @@ export const SignUpApi = createAsyncThunk(
       .post(`${baseUrl}users/register-client`, user)
       .then((res) => {
         console.log(res);
-        toast.success("SignUp Successfull");
         SignUpDet = res.data;
 
         return res.data;
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        toast.error(err.response.data.message, { autoClose: 500 });
         errorMess = err.response;
         return err;
       });
@@ -89,7 +85,6 @@ const LoginSlicer = createSlice({
       const {user} = action.payload;
       state.User = user
       if(user){
-
         sessionStorage.setItem("user", JSON.stringify(user));
         const userLoggedString = sessionStorage.getItem("user");
         const userLogged = JSON.parse(userLoggedString) ?? "Not Found";
@@ -98,7 +93,9 @@ const LoginSlicer = createSlice({
       else{
         state.isError = true;
         state.userLogin = "";
-        console.log(errorMess);
+        const response = action.payload
+        // toast.error(response,{autoClose: 500});
+        console.log();
         state.isLoading = false
       }
 
@@ -125,6 +122,8 @@ const LoginSlicer = createSlice({
     builder.addCase(SignUpApi.fulfilled, (state, action) => {
       state.isLoading = false;
       if (SignUpDet) {
+        
+        toast.success("SignUp Successfull");
         state.UserSignUp = SignUpDet;
         console.log(state.UserSignUp);
         
