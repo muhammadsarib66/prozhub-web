@@ -6,7 +6,7 @@ import {
   SerchServiceApi,
 } from "../features/Slicers/SearchSeviceSlicer";
 import { useSelector, useDispatch } from "react-redux";
-// import Services from "../screens/Services";
+import Services from "../screens/Services";
 import RequestServiceModal from "./RequestServiceModal";
 import { GetQuestionsApi } from "../features/Slicers/GetQuestionnaireSlicer";
 import SendNewRequest from "./SendNewRequest";
@@ -14,13 +14,13 @@ import SendNewRequest from "./SendNewRequest";
 function Main() {
   const dispatch = useDispatch();
   const { getService } = useSelector((state) => state.SearchSeviceSlicer);
-  // const { getAllServices } = useSelector((state) => state.Slicer);
+  const { getAllServices } = useSelector((state) => state.Slicer);
   const [isInputFocused, setIsInputFocused] = useState(false);
   // console.log(getService);
   const [SearchedService, setSearcedService] = useState([]);
 
   const [searchInput, setSearchInput] = useState("");
-  const [ setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
   const handleSearchInputChange = (e) => {
     const input = e.target.value;
     setSearchInput(input);
@@ -47,7 +47,7 @@ function Main() {
 
   useEffect(() => {
     setSearcedService(getService);
-  }, [SearchedService]);
+  }, []);
   return (
     <>
       <div className="main">
@@ -85,7 +85,7 @@ function Main() {
               </div>
             </div>
 
-            {isInputFocused && !searchInput === "" && (
+            {isInputFocused && !searchInput == "" && (
               <ul className="suggestion-list rounded border border-white">
                 {getService &&
                   getService?.map((suggestion, index) => {

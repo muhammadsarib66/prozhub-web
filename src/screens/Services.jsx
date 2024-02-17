@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Home.css";
 import img from "../images/buisness.jpg";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const { getService } = useSelector((state) => state.SearchSeviceSlicer);

@@ -3,6 +3,7 @@ import axios from "axios";
 import { baseUrl } from "./Slicer";
 import { toast } from "react-toastify";
 
+let LoginDet = {};
 let SignUpDet = {};
 let errorMess = "";
  
@@ -30,7 +31,7 @@ export const LoginApi = createAsyncThunk(
 // for Sigup
 export const SignUpApi = createAsyncThunk(
   "prozhub/SignUpApi",
-  async (user) => {
+  async (user, {}) => {
     console.log(user, "arhi hai");
     if (user === "") return "SignUp Failed";
 
@@ -92,8 +93,9 @@ const LoginSlicer = createSlice({
       else{
         state.isError = true;
         state.userLogin = "";
-        // const response = action.payload
+        const response = action.payload
         // toast.error(response,{autoClose: 500});
+        console.log();
         state.isLoading = false
       }
 

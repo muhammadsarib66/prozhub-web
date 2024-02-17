@@ -78,17 +78,17 @@ function Foooter() {
                   <ul className="social">
                     <li>
                       <Link to="/">
-                        <i className="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-twitter"></i>
                       </Link>
                     </li>
                     <li>
                       <Link to="/">
-                        <i className="fa-brands fa-linkedin"></i>
+                        <i class="fa-brands fa-linkedin"></i>
                       </Link>
                     </li>
                     <li>
                       <Link to="/">
-                        <i className="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-facebook-f"></i>
                       </Link>
                     </li>
                   </ul>

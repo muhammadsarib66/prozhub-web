@@ -61,5 +61,5 @@ export const NewRequestApi = createAsyncThunk(
     }
   });
 
-    // export const {} = NewRequestSlicer.actions;
+    export const {} = NewRequestSlicer.actions;
     export default NewRequestSlicer.reducer;

@@ -1,19 +1,23 @@
-import React, {  useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Login.css";
 import logo from "../images/logo1.png";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 // import Footer from "../components/Foooter";
 import { Link } from "react-router-dom";
-import {  useDispatch } from "react-redux";
+import User from "../data/User";
+import { useSelector, useDispatch } from "react-redux";
+import { setUserLogin } from "../features/Slicers/Slicer";
+import { useNavigate } from "react-router-dom";
 import { LoginApi } from "../features/Slicers/LoginSlicer";
 import {  toast } from "react-toastify";
 import { GetUser } from "../features/Slicers/LoginSlicer";
 // import { Navigate } from "react-router-dom";
 function Login() {
-  // const { isLoggedIn } = useSelector((state) => state.Slicer);
-  // const { userLogin ,IsUserLogin} = useSelector((state) => state.LoginSlicer);
+  const { isLoggedIn } = useSelector((state) => state.Slicer);
+  const { userLogin ,IsUserLogin} = useSelector((state) => state.LoginSlicer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = sessionStorage.getItem('token');
 
   const [email, setEmail] = useState("");
