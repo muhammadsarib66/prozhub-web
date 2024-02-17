@@ -5,7 +5,6 @@ import "./MyRequest.css";
 import Loading from "./Loading";
 import { ToastContainer } from "react-toastify";
 import moment from "moment";
-import { Card } from "react-bootstrap";
 
 const RequestService = () => {
   const dispatch = useDispatch();
@@ -14,7 +13,6 @@ const RequestService = () => {
   );
   // eslint-disable-next-line no-unused-vars
   const [SeeRequest, setSeeRequest] = useState([]);
-  // console.log(SeeRequest)
   const handleViewRequest = (item) => {
     setSeeRequest(item);
     console.log(item);
@@ -49,11 +47,7 @@ const RequestService = () => {
               {MyRequestsDetail &&
                 MyRequestsDetail.map((item) => {
                   return (
-                    <div
-                      className="mb-4 min-w-full rounded-md flex gap-2 flex-col justify-center items-center  bg-white shadow-md p-4"
-
-                      // style={{ width: "22rem" }}
-                    >
+                    <div className="mb-4 min-w-full rounded-md flex gap-2 flex-col justify-center items-center  bg-white shadow-md p-4">
                       <div className="flex flex-col items-center justify-center m-0">
                         <p className=" font-bold text-lg capitalize ">
                           {item?.serviceId?.serviceName}
@@ -127,24 +121,24 @@ const RequestService = () => {
                 {SeeRequest?.clientId?.email}
               </p>
 
-              <div className=" flex gap-2 w-fit items-center border rounded p-3">
+              <div className="flex gap-2 w-fit items-center border rounded p-3">
                 <span>
                   <span className="flex gap-1 items-center">
-                    {[1, 2, 3, 4, 5].map((item) => {
-                      return (
-                        <div
-                          className={` w-3 h-4 ${
-                            SeeRequest?.byBid ? "bg-orange-400" : "bg-gray-300"
-                          } `}
-                        ></div>
-                      );
-                    })}
+                    {[1, 2, 3, 4, 5].map((_, index) => (
+                      <div
+                        key={index}
+                        className={`w-2 h-5 ${
+                          index < SeeRequest?.bidBy
+                            ? "bg-orange-400"
+                            : "bg-gray-400"
+                        }`}
+                      ></div>
+                    ))}
                   </span>
                 </span>
                 {SeeRequest?.bidBy}/5 professionals has responded{" "}
-                <i class="fa-solid text-gray-300 fa-circle-exclamation"></i>
+                <i className="fa-solid text-gray-300 fa-circle-exclamation"></i>
               </div>
-
               <div className="py-2 ">
                 {SeeRequest?.questionnaire?.length > 0 && (
                   <h4 className="uppercase font-bold"> given Questions </h4>

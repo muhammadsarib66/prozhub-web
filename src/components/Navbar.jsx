@@ -12,11 +12,16 @@ function Navbar() {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
   const token = sessionStorage.getItem("token");
 
   const navigate = useNavigate();
   const handleLogout = () => {
+    setIsDrawerOpen(!isDrawerOpen);
     setIsOpen2(false);
     setIsLoading(true);
     toast.success("Logout Successfull");
@@ -30,8 +35,11 @@ function Navbar() {
 
   const handleOpen = () => {
     setIsOpen(true);
+    setIsDrawerOpen(false);
   };
-  const handleOpen1 = () => {};
+  const handleOpen1 = () => {
+    setIsDrawerOpen(false);
+  };
 
   const toggleDropdown = () => {
     setIsOpen2(!isOpen2);
@@ -39,7 +47,7 @@ function Navbar() {
   return (
     <>
       <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-20 items-center bg-white ">
-        <div className="  container flex justify-between w-full items-center pt-3">
+        <div className="hidden  container md:flex justify-between w-full items-center pt-3">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
           </Link>
@@ -68,41 +76,48 @@ function Navbar() {
             </li>
             {token ? (
               <>
-              <li>
-                Sarib Noor
-              </li>
-              <li className="nav-">
-                <div
-                  className="relative"
-                  href="#"
-                  role="button"
-                  data-bs-toggle=""
-                  aria-expanded="false"
-                >
-                  <img
-                    src={userImg}
-                    onClick={toggleDropdown}
-                    alt="logo"
-                    className="w-12 h-12 rounded-full "
-                  />
-                  {isOpen2 && (
-                    <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-3">
-                      <p className="m-0 hover:text-gray-400" onClick={() => setIsOpen2(false)}>
-                        <Link className="" to="/accountsettings">
-                          Account Settings
-                        </Link>
-                      </p>
-                      <p className=" m-0 hover:text-gray-400" onClick={handleLogout}>
-                        <Link className="" to="/">
-                          Logout
-                        </Link>
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </li>
+                <li>Sarib Noor</li>
+                <li className="nav-">
+                  <div
+                    className="relative flex items-center gap-2"
+                    href="#"
+                    role="button"
+                    data-bs-toggle=""
+                    aria-expanded="false"
+                  >
+                    <img
+                      src={userImg}
+                      
+                      alt="logo"
+                      className="w-12 h-12 rounded-full "
+                    />
+                    <span onClick={toggleDropdown}>
+
+                    <i  class="fa-solid fa-caret-down"></i>
+                    </span>
+                    {isOpen2 && (
+                      <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-3">
+                        <p
+                          className="m-0 hover:text-gray-400"
+                          onClick={() => setIsOpen2(false)}
+                        >
+                          <Link className="" to="/accountsettings">
+                            Account Settings
+                          </Link>
+                        </p>
+                        <p
+                          className=" m-0 hover:text-gray-400"
+                          onClick={handleLogout}
+                        >
+                          <Link className="" to="/">
+                            Logout
+                          </Link>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </li>
               </>
-          
             ) : (
               <li className="">
                 <Link className="n" to="/login">
@@ -112,7 +127,76 @@ function Navbar() {
             )}
           </ul>
         </div>
+        {/* responsive Nav */}
+        <div className=" container pt-2 md:hidden flex justify-between items-center">
+          <Link className="" to="Home">
+            <img src={logo} alt="logo" />
+          </Link>
+          <div onClick={toggleDrawer} className="z-[100000px] ">
+            <i className="text-3xl fa-solid fa-bars"></i>
+          </div>
+        </div>
+        {
+          <div
+            className={` shadow-md md:hidden  ${
+              isDrawerOpen ? "top-20 " : "top-[-1000px]"
+            } bg-white w-full h-fit pb-4 duration-500 ease-in-out  transition absolute  z-[100000]`}
+          >
+            <div className="container flex text-start justify-start">
+              <ul className="flex flex-col gap-3 items-start text-lg font-semibold ">
+                <li onClick={toggleDrawer}>
+                  {token && (
+                    <Link className="nav-link" to="/requestservice">
+                      My Request
+                    </Link>
+                  )}
+                </li>
+                <li className=" cursor-pointer">
+                  {!isOpen ? (
+                    <span onClick={handleOpen} className="">
+                      <Link to="/explore">
+                        Explore <i className="fas fa-chevron-down "></i>
+                      </Link>
+                    </span>
+                  ) : (
+                    <span onClick={handleOpen1} className="nav-link">
+                      <a className="nav-link" href="/">
+                        Explore <i className="fas fa-chevron-up "></i>
+                      </a>
+                    </span>
+                  )}
+                </li>
+                {token ? (
+                  <>
+                    <li>Sarib Noor</li>
+                    <li onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
+                      <Link className="" to="/accountsettings">
+                        Account Settings
+                      </Link>
+                    </li>
+                    <li onClick={handleLogout}>
+                      <Link className="" to="/">
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <li
+                    onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+                    className=""
+                  >
+                    <Link className="n" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                )}
+                <li></li>
+              </ul>
+            </div>
+          </div>
+        }
       </nav>
+
       <ToastContainer position="bottom-right" />
       {isLoading && <Loading />}
     </>

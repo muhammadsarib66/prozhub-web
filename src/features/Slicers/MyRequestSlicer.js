@@ -19,7 +19,7 @@ export const GetMyRequestApi = createAsyncThunk(
 
         const response = await axios.get(`${baseUrl}requests/get-my-requests`,config);
         // console.log(response);
-        toast.success("Get Request Successfull");
+        // toast.success("Get Request Successfull");
         return response.data;
       } catch (error) {
         toast.error(error.response.data.message);
@@ -46,7 +46,7 @@ export const GetMyRequestApi = createAsyncThunk(
     extraReducers: (builder) => {
       builder.addCase(GetMyRequestApi.pending, (state, action) => {
         state.isLoading = true;
-        console.log("Getting Request details ");
+        // console.log("Getting Request details ");
       });
       builder.addCase(GetMyRequestApi.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -57,12 +57,12 @@ export const GetMyRequestApi = createAsyncThunk(
             state.MyRequestsDetail = data;
             // console.log(data);
         }
-        console.log("Get Request Successfully");
+        // console.log("Get Request Successfully");
       });
       builder.addCase(GetMyRequestApi.rejected, (state, action) => {
         state.isLoading = false;
         state.IsError = true;
-        console.log("Get Requests Failed");
+        // console.log("Get Requests Failed");
   
         state.error = action.error.message; 
       });
