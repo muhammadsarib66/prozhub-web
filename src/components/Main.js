@@ -17,7 +17,7 @@ function Main() {
   const { getAllServices } = useSelector((state) => state.Slicer);
   const [isInputFocused, setIsInputFocused] = useState(false);
   // console.log(getService);
-  const [SearchedService, setSearcedService] = useState([])
+  const [SearchedService, setSearcedService] = useState([]);
 
   const [searchInput, setSearchInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -39,26 +39,27 @@ function Main() {
 
   const handleSuggestionClick = (suggestion) => {
     console.log(suggestion);
-    setSearchInput('');
-    dispatch(GetQuestionsApi(suggestion?._id))
+    setSearchInput("");
+    dispatch(GetQuestionsApi(suggestion?._id));
 
     dispatch(HandleShowModal(suggestion));
   };
 
-  useEffect(()=>{
-    setSearcedService(getService)
-  },[])
+  useEffect(() => {
+    setSearcedService(getService);
+  }, []);
   return (
     <>
       <div className="main">
         <div className="detail">
-          <h1>Find the perfect professional for you</h1>
-          <h3>Get free quotes within minutes</h3>
-
-          <div className="container p">
-            <div className="flex-box">
-              <div className="">
-                <div className="search-box p">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12">
+                <h1>
+                  Find the perfect <br /> professional for you
+                </h1>
+                <h3>Get free quotes within minutes</h3>
+                <div className="search-box ">
                   <div className="box">
                     <input
                       type="text"
@@ -69,52 +70,49 @@ function Main() {
                       onChange={handleSearchInputChange}
                     />
                   </div>
-                  <div className="box2">
+                  {/* <div className="box2">
                     <i class="fa-solid fa-location-dot"></i>
                     <input
                       type="text"
                       placeholder="postal code"
                       className="postal"
                     />
+                  </div> */}
+                  <div className="">
+                    <button className="search-btn"> Search</button>
                   </div>
                 </div>
               </div>
-              <div className="">
-                <button className="search-btn"> Search</button>
-              </div>
             </div>
-          </div>
 
-          {isInputFocused && !searchInput == "" && (
-            <ul className="suggestion-list rounded border border-white">
-              {
-               getService && getService?.map((suggestion, index) => {
-                  // console.log(suggestion)
-                  return (
-                    <li
-                      style={{ cursor: "pointer" }}
-                      key={suggestion?._id}
-                      onClick={() => handleSuggestionClick(suggestion)}
-                    >
-                      {suggestion?.serviceName}
-                    </li>
-                  );
-                })}
-            </ul>
-          )}
-          <div className="modalReq">
-            <RequestServiceModal />
+            {isInputFocused && !searchInput == "" && (
+              <ul className="suggestion-list rounded border border-white">
+                {getService &&
+                  getService?.map((suggestion, index) => {
+                    // console.log(suggestion)
+                    return (
+                      <li
+                        style={{ cursor: "pointer" }}
+                        key={suggestion?._id}
+                        onClick={() => handleSuggestionClick(suggestion)}
+                      >
+                        {suggestion?.serviceName}
+                      </li>
+                    );
+                  })}
+              </ul>
+            )}
+            <div className="modalReq">
+              <RequestServiceModal />
+            </div>
+            <div>
+              <SendNewRequest />
+            </div>
+            <p>Popular: House Cleaning, Web Design, Personal Trainers</p>
           </div>
-                  <div>
-
-      <SendNewRequest/>
-                  </div>
-          <p>Popular: House Cleaning, Web Design, Personal Trainers</p>
         </div>
       </div>
-
       {/* {getService && <Services />} */}
-
     </>
   );
 }

@@ -18,7 +18,6 @@ function Home() {
           Categeory={Categeory}
           bg={Categeory.bg}
         />
-        
       ))}
 
       <div className="testim-box space">
