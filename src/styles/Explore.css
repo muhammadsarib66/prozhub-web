@@ -1,0 +1,29 @@
+.explore-list {
+  padding: 0 0;
+  margin: 0 auto;
+}
+
+.explore-list li {
+  list-style: none;
+  display: inline-table;
+  /* float: right; */
+  margin: 20px 20px;
+  font-size: 18px;
+  font-family: "poppins";
+  font-weight: 600;
+}
+.explore {
+  margin-top: 60px;
+}
+.subcat {
+  margin: 0 0 !important;
+  padding: 0 0 !important;
+}
+.subcat li {
+  list-style: none;
+  display: list-item;
+  font-size: 14px;
+  color: gray;
+  margin: 5px 0;
+  float: unset;
+}

@@ -1,0 +1,212 @@
+.main {
+  padding: 20px;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(48, 98, 217, 0.2);
+}
+.detail {
+  position: absolute;
+  top: 25%;
+  left: 15%;
+  z-index: 1;
+}
+.detail h1 {
+  width: 60%;
+  font-family: "poppins";
+  font-weight: bolder;
+}
+
+.detail h3 {
+  font-family: "poppins";
+  color: gray;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.search-box {
+  /* border: 1px solid gray; */
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 0 10px;
+  border-radius: 8px;
+  flex-direction: row;
+  display: inline-flex;
+  width: 500px;
+  background-color: #fff;
+  /* justify-content: space-between; */
+}
+.search-box input {
+  background-color: transparent;
+  border: 0;
+  padding: 10px;
+}
+:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+.serch {
+  width: 100%;
+  /* color: #fff; */
+  font-family: "poppins";
+}
+.postal {
+  width: 100%;
+}
+.box {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  width: 70%;
+  border-radius: 8px;
+}
+.box2 {
+  width: 29%;
+  flex-direction: row;
+  display: inline-flex;
+  align-items: center;
+}
+.box2 i {
+  font-size: 18px;
+  /* color: white; */
+  margin-left: 5px;
+  /* margin-top: 15px; */
+}
+/* .serch::placeholder {
+  color: white;
+}
+.postal::placeholder {
+  color: white;
+} */
+.p {
+  padding: 0 0 !important;
+  margin: 0 0 !important;
+}
+.search-btn {
+  background-color: #3062d9;
+  border-radius: 8px;
+  border: 0;
+  padding: 10px 15px;
+  transition: all ease-in-out 0.3s;
+  color: #fff;
+  margin-left: 10px;
+}
+.search-btn:hover {
+  background-color: black;
+  color: #ffff;
+}
+.detail p {
+  margin-top: 10px;
+
+  font-size: 18;
+  font-family: "poppins";
+  font-weight: 500;
+}
+li a {
+  text-decoration: none;
+  color: unset;
+}
+.round1 {
+  height: 300px;
+  width: 300px;
+  border-radius: 100%;
+  position: absolute;
+  background: linear-gradient(
+    40deg,
+    rgba(48, 98, 217, 1) 0%,
+    rgba(48, 98, 217, 1) 35%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  bottom: -10%;
+  left: -5%;
+}
+.round2 {
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+  position: absolute;
+  background: linear-gradient(
+    40deg,
+    rgba(48, 98, 217, 1) 0%,
+    rgba(48, 98, 217, 1) 35%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  top: -10%;
+  left: 20%;
+}
+.round3 {
+  height: 350px;
+  width: 350px;
+  border-radius: 100%;
+  position: absolute;
+  background: linear-gradient(
+    220deg,
+    rgba(48, 98, 217, 1) 0%,
+    rgba(48, 98, 217, 1) 35%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  top: -15%;
+  right: -5%;
+}
+.round4 {
+  height: 450px;
+  width: 450px;
+  border-radius: 100%;
+  position: absolute;
+  background: linear-gradient(
+    320deg,
+    rgba(48, 98, 217, 1) 0%,
+    rgba(48, 98, 217, 1) 25%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  bottom: -35%;
+  right: 18%;
+}
+.round5 {
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  position: absolute;
+  background: linear-gradient(
+    120deg,
+    rgba(48, 98, 217, 1) 0%,
+    rgba(48, 98, 217, 1) 25%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  top: -5%;
+  left: -5%;
+}
+.suggestion-list {
+  background-color: white;
+  width: 500px;
+}
+.suggestion-list li {
+  /* color: #fff; */
+  list-style: none;
+  border-bottom: 1px solid gray;
+  padding: 10px 5px;
+  color: rgb(34, 32, 32);
+}
+.suggestion-list li:last-child {
+  border-bottom: none; /* Remove bottom border from the last li element */
+}
+.flex-box {
+  display: inline-flex;
+}
+
+.MyModal {
+  margin-top: 80px;
+  z-index: 2000px;
+}
+
+.loading {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  z-index: 110000000001 !important;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  left: 0;
+  top: 0;
+}

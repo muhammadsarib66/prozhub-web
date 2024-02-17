@@ -1,0 +1,122 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import logo from "../images/logo1.png";
+import { useDispatch } from "react-redux";
+import userImg from "../images/electrician.jpg";
+import { setUserLogout } from "../features/Slicers/LoginSlicer";
+import { ToastContainer, toast } from "react-toastify";
+import Loading from "../screens/Loading";
+function Navbar() {
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
+
+  const token = sessionStorage.getItem("token");
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    setIsOpen2(false);
+    setIsLoading(true);
+    toast.success("Logout Successfull");
+    setTimeout(() => {
+      setIsLoading(false);
+      dispatch(setUserLogout());
+      navigate("/");
+      window.location.reload();
+    }, 1000);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+  const handleOpen1 = () => {};
+
+  const toggleDropdown = () => {
+    setIsOpen2(!isOpen2);
+  };
+  return (
+    <>
+      <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-20 items-center bg-white ">
+        <div className="  container flex justify-between w-full items-center pt-3">
+          <Link className="" to="Home">
+            <img src={logo} alt="logo" />
+          </Link>
+          <ul className=" flex gap-3 items-center text-lg font-semibold ">
+            <li className="">
+              {token && (
+                <Link className="nav-link" to="/requestservice">
+                  My Request
+                </Link>
+              )}
+            </li>
+            <li className=" cursor-pointer">
+              {!isOpen ? (
+                <span onClick={handleOpen} className="">
+                  <Link to="/explore">
+                    Explore <i className="fas fa-chevron-down "></i>
+                  </Link>
+                </span>
+              ) : (
+                <span onClick={handleOpen1} className="nav-link">
+                  <a className="nav-link" href="/">
+                    Explore <i className="fas fa-chevron-up "></i>
+                  </a>
+                </span>
+              )}
+            </li>
+            {token ? (
+              <>
+              <li>
+                Sarib Noor
+              </li>
+              <li className="nav-">
+                <div
+                  className="relative"
+                  href="#"
+                  role="button"
+                  data-bs-toggle=""
+                  aria-expanded="false"
+                >
+                  <img
+                    src={userImg}
+                    onClick={toggleDropdown}
+                    alt="logo"
+                    className="w-12 h-12 rounded-full "
+                  />
+                  {isOpen2 && (
+                    <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-3">
+                      <p className="m-0 hover:text-gray-400" onClick={() => setIsOpen2(false)}>
+                        <Link className="" to="/accountsettings">
+                          Account Settings
+                        </Link>
+                      </p>
+                      <p className=" m-0 hover:text-gray-400" onClick={handleLogout}>
+                        <Link className="" to="/">
+                          Logout
+                        </Link>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </li>
+              </>
+          
+            ) : (
+              <li className="">
+                <Link className="n" to="/login">
+                  Login
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
+      </nav>
+      <ToastContainer position="bottom-right" />
+      {isLoading && <Loading />}
+    </>
+  );
+}
+
+export default Navbar;

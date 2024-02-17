@@ -1,0 +1,78 @@
+.linkbtn button {
+  background-color: #3062d9;
+  color: white;
+  font-family: "poppins";
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 5pxs;
+}
+.cars {
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin: 20px 10px;
+}
+.details button {
+  background-color: #3062d9;
+  color: white;
+  font-family: "poppins";
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 5px;
+  width: 100%;
+}
+.details {
+  font-family: "poppins";
+  padding: 10px;
+  margin: 20px 0;
+}
+.cars img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+.slids {
+  position: relative;
+}
+.next-button {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 0;
+}
+.prev-button {
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  background-color: transparent;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 0;
+}
+.userdetail {
+  margin: 10px 0;
+  padding: 0 20px;
+}
+.userdetail input {
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgb(224, 212, 212);
+  background-color: transparent;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+.userdetail button {
+  width: 100%;
+  padding: 10px 0;
+  color: white;
+  background-color: #3062d9;
+  border: 0;
+  border-radius: 5px;
+}

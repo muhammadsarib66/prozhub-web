@@ -1,0 +1,87 @@
+.login {
+  align-items: center;
+  justify-content: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: rgb(255, 253, 250);
+  margin-top: 60px;
+}
+.login-box {
+  max-width: 400px;
+  padding: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+.heading h2 {
+  font-family: "poppins";
+  font-weight: 600;
+  margin: 10px 0;
+}
+img {
+  max-width: 100%;
+}
+.logo img {
+  width: 100px;
+}
+input[type="password"],
+[type="email"] {
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgb(224, 212, 212);
+  background-color: transparent;
+  padding: 5px 10px;
+  margin: 5px 0;
+}
+
+.login label {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "poppins";
+  position: relative;
+  top: -4px;
+  left: 5px;
+}
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgb(224, 212, 212);
+  margin: 5px 0;
+}
+.login-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  background-color: #3062d9;
+  margin: 10px 0;
+  transition: all ease-in-out 0.3s;
+  color: #fff;
+  padding: 5px;
+}
+.login-btn:hover {
+  background-color: black;
+}
+.forget {
+  text-align: right;
+}
+.forget a {
+  text-decoration: none;
+  color: gray;
+  font-family: "poppins";
+  font-weight: 500;
+  font-size: 14px;
+  transition: all ease-in-out 0.3s;
+}
+.forget a:hover {
+  color: black;
+}
+
+#text, #Number{
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgb(224, 212, 212);
+
+  padding: 5px 10px;
+  margin: 5px 0;
+}

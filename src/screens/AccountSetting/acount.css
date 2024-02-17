@@ -1,0 +1,30 @@
+.mainCOntainer{
+    min-height: 100vh;
+    /* margin : 10px 0px; */
+}
+.main-screen{
+    min-height: 90vh;
+    width: 100% !important;    
+    margin-top: 80px;
+    max-width: 500px;
+    background-color: whitesmoke;
+    border-radius: 10px ;
+    padding-top: 10px;
+
+}
+.heading{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.ImgChanger{
+    display: block;
+    img{
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-position: center;
+        
+        
+    }
+}

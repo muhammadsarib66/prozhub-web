@@ -1,0 +1,119 @@
+.views {
+  width: 100%;
+  position: relative;
+}
+.views img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+.views::before {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  content: "";
+}
+.View-Heading {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  padding: 0 10px;
+}
+.View-Heading h2 {
+  font-family: "poppins";
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  border-radius: 5px;
+  font-size: 30px;
+}
+.services-form {
+  background-color: #fff;
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+.services-form input {
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgb(224, 212, 212);
+  background-color: transparent;
+  padding: 5px 10px;
+}
+.services-form h5 {
+  font-size: 18px;
+  font-family: "poppins";
+  font-weight: 600;
+  margin-top: 5px;
+}
+.details-description h2 {
+  font-family: "poppins";
+  font-weight: 600;
+  font-size: 30px;
+}
+.details-description p {
+  font-family: "poppins";
+  font-size: 18px;
+}
+.card-box {
+  padding: 50px 20px 0 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  height: 300px;
+  position: relative;
+}
+.card-bg {
+  background-color: rgb(245, 243, 239);
+}
+.card-box h4 {
+  font-family: "poppins";
+  font-weight: 500;
+}
+.card-box p {
+  font-family: "poppins";
+  font-size: 16px;
+  color: gray;
+}
+.sr {
+  background-color: #3062d9;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  line-height: 30px;
+}
+.mini-list {
+  margin: 0 0;
+  padding: 0 0;
+}
+.mini-list li {
+  display: inline-table;
+  list-style: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #3062d9;
+  font-family: "poppins";
+  font-size: 18px;
+  font-weight: 500;
+  margin: 5px;
+}
+.mini-list li a {
+  display: block;
+}
+.my-list {
+  margin: 5px 0;
+}
