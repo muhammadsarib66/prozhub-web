@@ -47,11 +47,7 @@ function Navbar() {
   return (
     <>
       <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-fit py-1 items-center bg-white ">
-<<<<<<< HEAD
         <div className="hidden  container md:flex justify-between w-full items-center p-0">
-=======
-        <div className="hidden  container md:flex justify-between w-full items-center pt-0">
->>>>>>> edf3499bfa9d0906dfcc0669e63f32910993d1b4
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
           </Link>
