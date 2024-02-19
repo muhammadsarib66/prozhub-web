@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "./MyRequest.css";
 import Loading from "./Loading";
 import moment from "moment";
+// import { Modal } from "bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const RequestService = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { isLoading, MyRequestsDetail , SingleReqObj } = useSelector(
     (state) => state.MyRequestSlicer
@@ -18,6 +22,12 @@ const RequestService = () => {
     console.log(item);
   };
 
+  const handleCloseRequest=(e)=>{
+    setIsOpen(true)
+    console.log(e)
+  }
+
+  const handleClose = () => setIsOpen(false);
   useEffect(() => {
     setSeeRequest(SingleReqObj);
     if (MyRequestsDetail.length > 0) {
@@ -95,6 +105,7 @@ const RequestService = () => {
             </div>
 
             <div className="col-sm-8 DetailContainer   w-full">
+             
               <p className="text-xl capitalize font-bold">
                 {SeeRequest?.clientId?.fullName}
               </p>
@@ -165,6 +176,39 @@ const RequestService = () => {
                   );
                 })}
               </div>
+              <div className="flex justify-center my-4" >
+                <button  className="btn btn-danger" onClick={()=>handleCloseRequest(SeeRequest?._id)}> Close Request!</button>
+            </div>
+            <Modal show={isOpen} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Close Request Response </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="mb-3">
+          <label htmlFor="OldPassword" className="form-label">
+            reason to Close
+          </label>
+          <input
+            type="text"
+            name="oldPassword"
+            // value={oldPassword}
+            // onChange={(e) =>  setOldPassword(e.target.value) }
+            className="form-control"
+            id="phoneNumber"
+          />
+        </div>
+       
+       
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" >
+          Change Password
+        </Button>
+      </Modal.Footer>
+    </Modal>
             </div>
           </div>
           }

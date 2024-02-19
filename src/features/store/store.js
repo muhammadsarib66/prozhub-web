@@ -6,6 +6,7 @@ import GetQuestionnaireSlicer from "../Slicers/GetQuestionnaireSlicer";
 import NewRequestSlicer from "../Slicers/NewRequestSlicer";
 import MyRequestSlicer from "../Slicers/MyRequestSlicer";
 import EditProfileSlicer from "../Slicers/EditProfileSlicer";
+import CloseRequestSlicer from "../Slicers/CloseRequestSlicer";
 export const store = configureStore({
   reducer: {
     Slicer,
@@ -14,6 +15,7 @@ export const store = configureStore({
     GetQuestionnaireSlicer,
     NewRequestSlicer,
     MyRequestSlicer,
-    EditProfileSlicer
+    EditProfileSlicer,
+    CloseRequestSlicer
   },
 });
