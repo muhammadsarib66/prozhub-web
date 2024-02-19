@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 
 export const CloseReqApi = createAsyncThunk(
   "prozhub/CloseReqApi",
-  async (reqObj, { dispatch, getState }) => {
-    console.log(reqObj, "is coming");
+  async (obj, { dispatch, getState }) => {
+    console.log(obj, "is coming");
     try {
       const token = sessionStorage.getItem("token");
 
@@ -18,8 +18,8 @@ export const CloseReqApi = createAsyncThunk(
         },
       };
       const response = await axios.post(
-        `${baseUrl}requests/create-new-request`,
-        reqObj,
+        `${baseUrl}requests/close-request`,
+        obj,
         config
       );
       toast.success("Request Closed");

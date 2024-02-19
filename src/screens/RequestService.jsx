@@ -34,9 +34,8 @@ const RequestService = () => {
   const handleClose = () => setIsOpen(false);
 
 const RequestClosed = ()=>{
-  // const ReqObj = reqid  }
-  // console.log(ReqObj)
-  const obj = {requestId : reqid , reason : reason}
+  const obj = {requestId : reqid ,  reason}
+  console.log(obj)
   dispatch(CloseReqApi(obj))
 }
 
