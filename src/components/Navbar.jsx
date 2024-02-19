@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo1.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userImg from "../images/electrician.jpg";
+import { baseUrl } from "../features/Slicers/Slicer";
 import { setUserLogout } from "../features/Slicers/LoginSlicer";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Loading from "../screens/Loading";
 function Navbar() {
   const dispatch = useDispatch();
+  const {ProfileImg} = useSelector((state)=>state.EditProfileSlicer)
+  const [profileImage, setProfileImg] = useState(userImg);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const User = sessionStorage.getItem("user");
+  const { fullName } = JSON.parse(User);
 
+ 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
@@ -44,6 +50,25 @@ function Navbar() {
   const toggleDropdown = () => {
     setIsOpen2(!isOpen2);
   };
+
+  useEffect(()=>{
+    if(ProfileImg){
+      const User = sessionStorage.getItem("user");
+      const { fullName,profile } = JSON.parse(User);
+      const img = `${baseUrl}${profile}`
+      setProfileImg(img)
+      console.log(img)
+    }
+    else{
+      const User = sessionStorage.getItem("user");
+      const { fullName,profile } = JSON.parse(User);
+      const img = `${baseUrl}${profile}`
+      setProfileImg(img)
+      console.log(img)
+    }
+    
+  },[ProfileImg])
+
   return (
     <>
       <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-fit py-1 items-center bg-white ">
@@ -56,7 +81,7 @@ function Navbar() {
               {token && (
                 <Link className="nav-link" to="/requestservice">
                   My Request
-              </Link>
+                </Link>
               )}
             </li>
             <li className=" cursor-pointer">
@@ -76,7 +101,7 @@ function Navbar() {
             </li>
             {token ? (
               <>
-                <li>Sarib Noor</li>
+                <li>{fullName}</li>
                 <li className="nav-">
                   <div
                     className="relative flex items-center gap-2"
@@ -85,15 +110,22 @@ function Navbar() {
                     data-bs-toggle=""
                     aria-expanded="false"
                   >
-                    <img 
-                      src={userImg}
-                      
+                    <img
+                      src={profileImage}
                       alt="logo"
                       className="w-12 h-12 rounded-full "
                     />
+                    {/* {
+                      ProfileImg ?
+                    
+                    : 
+                    <img
+                      src={userImg}
+                      alt="logo"
+                      className="w-12 h-12 rounded-full "/>
+                  } */}
                     <span onClick={toggleDropdown}>
-
-                    <i  class="fa-solid fa-caret-down"></i>
+                      <i class="fa-solid fa-caret-down"></i>
                     </span>
                     {isOpen2 && (
                       <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-3">
@@ -137,9 +169,11 @@ function Navbar() {
           </div>
         </div>
         {
-          <div 
+          <div
             className={` shadow-md md:hidden  ${
-              isDrawerOpen ? "top-20 duration-300 transition " : " duration-300 transition top-[-1000px]"
+              isDrawerOpen
+                ? "top-20 duration-300 transition "
+                : " duration-300 transition top-[-1000px]"
             } bg-white w-full h-fit pb-4 duration-500 ease-in-out  transition absolute  z-[100000]`}
           >
             <div className="container flex text-start justify-start">
@@ -152,12 +186,12 @@ function Navbar() {
                   )}
                 </li>
                 <li className=" cursor-pointer">
-                <span onClick={handleOpen} className="">
-                      <Link to="/explore">
-                        Explore 
-                        {/* <i className="fas fa-chevron-down "></i> */}
-                      </Link>
-                    </span>
+                  <span onClick={handleOpen} className="">
+                    <Link to="/explore">
+                      Explore
+                      {/* <i className="fas fa-chevron-down "></i> */}
+                    </Link>
+                  </span>
                   {/* {!isOpen ? (
                     <span onClick={handleOpen} className="">
                       <Link to="/explore">

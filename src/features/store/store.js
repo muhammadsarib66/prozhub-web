@@ -5,7 +5,7 @@ import LoginSlicer from "../Slicers/LoginSlicer";
 import GetQuestionnaireSlicer from "../Slicers/GetQuestionnaireSlicer";
 import NewRequestSlicer from "../Slicers/NewRequestSlicer";
 import MyRequestSlicer from "../Slicers/MyRequestSlicer";
-
+import EditProfileSlicer from "../Slicers/EditProfileSlicer";
 export const store = configureStore({
   reducer: {
     Slicer,
@@ -13,6 +13,7 @@ export const store = configureStore({
     LoginSlicer,
     GetQuestionnaireSlicer,
     NewRequestSlicer,
-    MyRequestSlicer
+    MyRequestSlicer,
+    EditProfileSlicer
   },
 });

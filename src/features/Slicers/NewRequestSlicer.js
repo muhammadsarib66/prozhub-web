@@ -48,6 +48,7 @@ export const NewRequestApi = createAsyncThunk(
       });
       builder.addCase(NewRequestApi.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.getReqData = action.payload 
         console.log(action.payload);
         console.log("Request Created");
       });

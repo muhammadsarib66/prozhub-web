@@ -40,7 +40,7 @@ export const SignUpApi = createAsyncThunk(
       .then((res) => {
         console.log(res);
         SignUpDet = res.data;
-
+        toast.success("SignUp Successfull");
         return res.data;
       })
       .catch((err) => {
@@ -52,6 +52,7 @@ export const SignUpApi = createAsyncThunk(
 );
 
 const initialState = {
+  
   IsUserLogin: false,
   User: {},
   isUserLogout: false,
@@ -82,13 +83,15 @@ const LoginSlicer = createSlice({
     builder.addCase(LoginApi.fulfilled, (state, action) => {
       state.isLoading = false;
       state.IsUserLogin = true;
+      
       const {user} = action.payload;
-      state.User = user
       if(user){
+        
         sessionStorage.setItem("user", JSON.stringify(user));
         const userLoggedString = sessionStorage.getItem("user");
         const userLogged = JSON.parse(userLoggedString) ?? "Not Found";
-        console.log(userLogged);
+        state.User = userLogged
+        // console.log(state.User);
       }
       else{
         state.isError = true;
@@ -122,8 +125,6 @@ const LoginSlicer = createSlice({
     builder.addCase(SignUpApi.fulfilled, (state, action) => {
       state.isLoading = false;
       if (SignUpDet) {
-        
-        toast.success("SignUp Successfull");
         state.UserSignUp = SignUpDet;
         console.log(state.UserSignUp);
         

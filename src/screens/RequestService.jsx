@@ -10,6 +10,7 @@ const RequestService = () => {
   const { isLoading, MyRequestsDetail , SingleReqObj } = useSelector(
     (state) => state.MyRequestSlicer
   );
+  const {getReqData}  = useSelector(item =>item.NewRequestSlicer)
   // eslint-disable-next-line no-unused-vars
   const [SeeRequest, setSeeRequest] = useState([]);
   const handleViewRequest = (item) => {
@@ -20,6 +21,10 @@ const RequestService = () => {
   useEffect(() => {
     setSeeRequest(SingleReqObj);
     if (MyRequestsDetail.length > 0) {
+      setSeeRequest(MyRequestsDetail[0]);
+    }
+    else{
+      setSeeRequest(getReqData)
     }
     dispatch(GetMyRequestApi());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,7 +73,7 @@ const RequestService = () => {
                           "bg-green-200 text-green-800"
                         }
                         ${
-                          item.requestStatus === "Cancelled" &&
+                          item.requestStatus === "Closed" &&
                           "bg-red-200 text-red-800"
                         }
                         

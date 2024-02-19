@@ -34,11 +34,12 @@ function App() {
   useEffect(()=>{
     if(Token){
 
-      dispatch(fetchProzHubApi())
       dispatch(GetMyRequestApi());
+      dispatch(fetchProzHubApi())
     }
  console.log('isLoading', isLoading)
-  },[LoginApi])
+  },[dispatch])
+  
   return (
     <div>
       { isLoading && <Loading/>}

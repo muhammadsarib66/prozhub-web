@@ -18,7 +18,7 @@ export const GetMyRequestApi = createAsyncThunk(
           };
 
         const response = await axios.get(`${baseUrl}requests/get-my-requests`,config);
-        // console.log(response);
+        console.log(response);
         // toast.success("Get Request Successfull");
         return response.data;
       } catch (error) {
