@@ -52,7 +52,7 @@ export const GetMyRequestApi = createAsyncThunk(
         state.isLoading = false;
         const Data = action.payload
         const {data} = Data
-        if(data.length >0){
+        if(data){
 
             state.MyRequestsDetail = data;
             state.SingleReqObj = data[0];

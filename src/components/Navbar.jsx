@@ -11,7 +11,7 @@ import Loading from "../screens/Loading";
 function Navbar() {
   const dispatch = useDispatch();
   const {ProfileImg} = useSelector((state)=>state.EditProfileSlicer)
-  const [profileImage, setProfileImg] = useState(userImg);
+  const [profileImage, setProfileImg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
@@ -19,16 +19,15 @@ function Navbar() {
 
   const User = sessionStorage.getItem("user");
   const Token = sessionStorage.getItem("token");
-  let fullName1 = ''
+  let UserName = ''
   if (User){
     const { fullName } = JSON.parse(User);
-     fullName1 = fullName;
+     UserName = fullName;
   } 
   
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
-  const token = sessionStorage.getItem("token");
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -62,7 +61,7 @@ function Navbar() {
       const { profile } = JSON.parse(User);
       const img = `${baseUrl}${profile}`
       setProfileImg(img)
-      console.log(img)
+      // console.log(img)
     }
     else if(Token) {
 
@@ -70,10 +69,10 @@ function Navbar() {
       const { profile } = JSON.parse(User);
       const img = `${baseUrl}${profile}`
       setProfileImg(img)
-      console.log(img)
+      // console.log(img)
     }
     
-  },[ProfileImg])
+  },[ProfileImg,Token])
 
   return (
     <>
@@ -84,7 +83,7 @@ function Navbar() {
           </Link>
           <ul className=" flex gap-3 items-center text-lg font-semibold ">
             <li className="">
-              {token && (
+              {Token && (
                 <Link className="nav-link" to="/requestservice">
                   My Request
                 </Link>
@@ -105,9 +104,9 @@ function Navbar() {
                 </span>
               )}
             </li>
-            {token ? (
+            {User ? (
               <>
-                <li>{ fullName1}</li>
+                <li>{UserName}</li>
                 <li className="nav-">
                   <div
                     className="relative flex items-center gap-2"
@@ -116,20 +115,20 @@ function Navbar() {
                     data-bs-toggle=""
                     aria-expanded="false"
                   >
-                    {
+                    <img
+                      src={profileImage}
+                      alt="logo"
+                      className="w-12 h-12 rounded-full "
+                    />
+                    {/* {
                       User ?
-                      <img
-                        src={profileImage}
-                        alt="logo"
-                        className="w-12 h-12 rounded-full "
-                      />
                     
                     : 
                     <img
                       src={userImg}
                       alt="logo"
                       className="w-12 h-12 rounded-full "/>
-                  }
+                  } */}
                     <span onClick={toggleDropdown}>
                       <i class="fa-solid fa-caret-down"></i>
                     </span>
@@ -185,7 +184,7 @@ function Navbar() {
             <div className="container flex text-start justify-start">
               <ul className="flex flex-col gap-3 items-start text-lg font-semibold ">
                 <li onClick={toggleDrawer}>
-                  {token && (
+                  {Token && (
                     <Link className="nav-link" to="/requestservice">
                       My Request
                     </Link>
@@ -195,28 +194,12 @@ function Navbar() {
                   <span onClick={handleOpen} className="">
                     <Link to="/explore">
                       Explore
-                      {/* <i className="fas fa-chevron-down "></i> */}
                     </Link>
                   </span>
-                  {/* {!isOpen ? (
-                    <span onClick={handleOpen} className="">
-                      <Link to="/explore">
-                        Explore 
-                        <i className="fas fa-chevron-down "></i>
-                      </Link>
-                    </span>
-                  ) : (
-                    <span onClick={handleOpen1} className="nav-link">
-                      <a className="nav-link" href="/">
-                        Explore
-                         <i className="fas fa-chevron-up "></i>
-                      </a>
-                    </span>
-                  )} */}
                 </li>
-                {token ? (
+                {Token ? (
                   <>
-                    <li>Sarib Noor</li>
+                    <li>{UserName}</li>
                     <li onClick={() => setIsDrawerOpen(!isDrawerOpen)}>
                       <Link className="" to="/accountsettings">
                         Account Settings

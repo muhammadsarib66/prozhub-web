@@ -33,6 +33,9 @@ const ChangePass = () => {
       }
       const pass = { oldPassword, newPassword };
       dispatch(ChangePassApi(pass));
+      setOldPassword("");
+      setNewPassword("");
+      setConfirmNewPassword("");
     }
   };
 
@@ -56,21 +59,7 @@ const ChangePass = () => {
             id="phoneNumber"
           />
         </div>
-        {/* <div className="mb-3">
-          <label htmlFor="NewPassword" className="form-label">
-            New Password
-          </label>
-          <input
-            type="text"
-            name="newPassword"
-            value={newPassword}
-            onChange={(e)=> setNewPassword(e.target.value)}
-            // disabled={editBtn}
-            className="form-control"
-            id="phoneNumber"
-          />
-        </div> */}
-        <div className="mb-3 ">
+    <div className="mb-3 ">
       <label htmlFor="NewPassword" className="form-label">
         New Password
       </label>
@@ -85,11 +74,27 @@ const ChangePass = () => {
         />
         <span onClick={()=>setShowPass(!showPass)} className="input-group-text">
           <i class={`fa-solid  ${showPass ? 'fa-eye-slash': "fa-eye" }`}></i>
-           {/* Icon */}
         </span>
       </div>
     </div>
-        <div className="mb-3">
+    <div className="mb-3 ">
+      <label htmlFor="ConfirmNewPassword" className="form-label">
+      Confirm New Password
+      </label>
+      <div className="input-group ">
+        <input
+          type={showPass ? "text" : "password" }
+          name="confirmNewPass"
+          value={confirmNewPassword}
+          onChange={(e) => setConfirmNewPassword(e.target.value)}
+          className=" form-control"
+        />
+        <span onClick={()=>setShowPass(!showPass)} className="input-group-text">
+          <i class={`fa-solid  ${showPass ? 'fa-eye-slash': "fa-eye" }`}></i>
+        </span>
+      </div>
+    </div>
+        {/* <div className="mb-3">
           <label htmlFor="ConfirmNewPassword" className="form-label">
             Confirm New Password
           </label>
@@ -98,11 +103,9 @@ const ChangePass = () => {
             name="confirmNewPass"
             value={confirmNewPassword}
             onChange={(e)=> setConfirmNewPassword(e.target.value)}
-            // disabled={editBtn}
             className="form-control"
-            id="phoneNumber"
           />
-        </div>
+        </div> */}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
