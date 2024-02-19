@@ -16,10 +16,15 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const User = sessionStorage.getItem("user");
-  const { fullName } = JSON.parse(User);
 
- 
+  const User = sessionStorage.getItem("user");
+  const Token = sessionStorage.getItem("token");
+  let fullName1 = ''
+  if (User){
+    const { fullName } = JSON.parse(User);
+     fullName1 = fullName;
+  } 
+  
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
@@ -54,14 +59,15 @@ function Navbar() {
   useEffect(()=>{
     if(ProfileImg){
       const User = sessionStorage.getItem("user");
-      const { fullName,profile } = JSON.parse(User);
+      const { profile } = JSON.parse(User);
       const img = `${baseUrl}${profile}`
       setProfileImg(img)
       console.log(img)
     }
-    else{
+    else if(Token) {
+
       const User = sessionStorage.getItem("user");
-      const { fullName,profile } = JSON.parse(User);
+      const { profile } = JSON.parse(User);
       const img = `${baseUrl}${profile}`
       setProfileImg(img)
       console.log(img)
@@ -101,7 +107,7 @@ function Navbar() {
             </li>
             {token ? (
               <>
-                <li>{fullName}</li>
+                <li>{ fullName1}</li>
                 <li className="nav-">
                   <div
                     className="relative flex items-center gap-2"
@@ -110,20 +116,20 @@ function Navbar() {
                     data-bs-toggle=""
                     aria-expanded="false"
                   >
-                    <img
-                      src={profileImage}
-                      alt="logo"
-                      className="w-12 h-12 rounded-full "
-                    />
-                    {/* {
-                      ProfileImg ?
+                    {
+                      User ?
+                      <img
+                        src={profileImage}
+                        alt="logo"
+                        className="w-12 h-12 rounded-full "
+                      />
                     
                     : 
                     <img
                       src={userImg}
                       alt="logo"
                       className="w-12 h-12 rounded-full "/>
-                  } */}
+                  }
                     <span onClick={toggleDropdown}>
                       <i class="fa-solid fa-caret-down"></i>
                     </span>
