@@ -7,9 +7,13 @@ import moment from "moment";
 // import { Modal } from "bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { CloseReqApi } from "../features/Slicers/CloseRequestSlicer";
 
 const RequestService = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [reqid , setReqId] = useState("")
+  // const [requestId, setReqId] = useState("");
+  const [reason , setCloseReqReason] = useState("")
   const dispatch = useDispatch();
   const { isLoading, MyRequestsDetail , SingleReqObj } = useSelector(
     (state) => state.MyRequestSlicer
@@ -25,9 +29,17 @@ const RequestService = () => {
   const handleCloseRequest=(e)=>{
     setIsOpen(true)
     console.log(e)
+    setReqId(e)
   }
-
   const handleClose = () => setIsOpen(false);
+
+const RequestClosed = ()=>{
+  // const ReqObj = reqid  }
+  // console.log(ReqObj)
+  const obj = {requestId : reqid , reason : reason}
+  dispatch(CloseReqApi(obj))
+}
+
   useEffect(() => {
     setSeeRequest(SingleReqObj);
     if (MyRequestsDetail.length > 0) {
@@ -161,7 +173,6 @@ const RequestService = () => {
                   <h4 className="uppercase font-bold"> given Questions </h4>
                 )}
                 {SeeRequest?.questionnaire?.map((item) => {
-                  console.log(item.question);
                   return (
                     <div className="pt-2 border-b-2">
                       <p className="font-semibold  text-xl">
@@ -185,14 +196,14 @@ const RequestService = () => {
       </Modal.Header>
       <Modal.Body>
         <div className="mb-3">
-          <label htmlFor="OldPassword" className="form-label">
+          <label htmlFor="closeRequest" className="form-label">
             reason to Close
           </label>
           <input
             type="text"
-            name="oldPassword"
-            // value={oldPassword}
-            // onChange={(e) =>  setOldPassword(e.target.value) }
+            name="closerequest"
+            value={reason}
+            onChange={(e) =>  setCloseReqReason(e.target.value) }
             className="form-control"
             id="phoneNumber"
           />
@@ -202,10 +213,10 @@ const RequestService = () => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Close
+          Cancel
         </Button>
-        <Button variant="primary" >
-          Change Password
+        <Button onClick={RequestClosed} variant="primary" >
+          Close Request
         </Button>
       </Modal.Footer>
     </Modal>
