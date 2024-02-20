@@ -16,7 +16,7 @@ const RequestService = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [reqid, setReqId] = useState("");
   const [reason, setCloseReqReason] = useState("");
-  const { getReqData } = useSelector((item) => item.NewRequestSlicer);
+  // const { getReqData } = useSelector((item) => item.NewRequestSlicer);
   const [SeeRequest, setSeeRequest] = useState(SingleReqObj);
   const handleViewRequest = (item) => {
     setSeeRequest(item);
@@ -35,19 +35,15 @@ const RequestService = () => {
     setIsOpen(false)
     setCloseReqReason('')
 
+    setTimeout(() => {
+      dispatch(GetMyRequestApi());
+
+    }, 1000);
   };
 
-  useEffect(() => {
-    setSeeRequest(SingleReqObj);
-    if (MyRequestsDetail.length > 0) {
-      setSeeRequest(MyRequestsDetail[0]);
-    } else {
-      setSeeRequest(getReqData);
-    }
+  useEffect(()=>{
     dispatch(GetMyRequestApi());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, SeeRequest]);
-
+  },[dispatch])
   return (
     <div className="container-fluid  ">
       {isLoading && <Loading />}

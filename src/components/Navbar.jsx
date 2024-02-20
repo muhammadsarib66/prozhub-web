@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo1.png";
 import { useDispatch, useSelector } from "react-redux";
-import userImg from "../images/electrician.jpg";
 import { baseUrl } from "../features/Slicers/Slicer";
 import { setUserLogout } from "../features/Slicers/LoginSlicer";
 import { toast } from "react-toastify";
@@ -39,7 +38,7 @@ function Navbar() {
       setIsLoading(false);
       dispatch(setUserLogout());
       navigate("/");
-      window.location.reload();
+      // window.location.reload();
     }, 1000);
   };
 
@@ -61,7 +60,6 @@ function Navbar() {
       const { profile } = JSON.parse(User);
       const img = `${baseUrl}${profile}`
       setProfileImg(img)
-      // console.log(img)
     }
     else if(Token) {
 
@@ -69,7 +67,6 @@ function Navbar() {
       const { profile } = JSON.parse(User);
       const img = `${baseUrl}${profile}`
       setProfileImg(img)
-      // console.log(img)
     }
     
   },[ProfileImg,Token])

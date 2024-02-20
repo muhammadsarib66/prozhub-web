@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/Home.css";
 import Categeory from "../data/fake";
-import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -49,11 +48,11 @@ function Discover() {
         <div className="row">
           <div>
             <Slider {...settings}>
-              {Categeory.map((category) => (
-                <div style={{ marginLeft: "10px", marginRight: "10px" }}>
+              {Categeory.map((category , inde) => (
+                <div key={inde}style={{ marginLeft: "10px", marginRight: "10px" }}>
                   <div className="categeory_listing  ">
                     <div className="iconBoxs">
-                      <i class="fa-regular fa-heart"></i>
+                      <i className="fa-regular fa-heart"></i>
                     </div>
 
                     <h6>{category.title}</h6>

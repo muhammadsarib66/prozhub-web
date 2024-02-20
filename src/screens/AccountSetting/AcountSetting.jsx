@@ -4,7 +4,6 @@ import Loading from "../../screens/Loading";
 import "./acount.css";
 import {
   AddImageApi,
-  ChangePassApi,
   EditUserApi,
   PassOpenModal,
 } from "../../features/Slicers/EditProfileSlicer";
@@ -124,7 +123,7 @@ const AcountSetting = () => {
             </div>
             <ChangePass />
             <div>
-              <button onClick={handleSubmit} className="btn btn-primary">
+              <button onClick={handleSubmit} className="btn btn-primary" style={{backgroundColor: "#051269ef"}}>
                 Save Changes
               </button>
               <button
@@ -133,12 +132,12 @@ const AcountSetting = () => {
               >
                 Edit Changes
               </button>
-              <button
+              <button 
                 onClick={HandleAddImg}
           
-                className="m-1 btn btn-info"
+                className="m-1 btn text-white  " style={{backgroundColor: '#F0A330'}}
               >
-                upload Img
+                Upload Profile Image
               </button>
             </div>
           </div>

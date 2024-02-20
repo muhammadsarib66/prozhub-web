@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from "react-redux";
 import { handleCloseFinalReq } from '../features/Slicers/SearchSeviceSlicer';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { NewRequestApi } from '../features/Slicers/NewRequestSlicer';
 import Loading from '../screens/Loading';
@@ -33,15 +33,11 @@ function SendNewRequest() {
   } else {
     console.log("No user found"); // or handle the absence of user id accordingly
   }
-  // console.log(_id)
-  // const {_id} =  JSON.parse(userLoggedString) ; 
-  // console.log('cehck',userLoggedString)
   const HandleCreateRequeste = ()=>{
     if(Token){
-  console.log()
 
       const sendData = {clientId :  _id ,postalCode,  serviceId, questionnaire }
-        console.log(sendData)
+        // console.log(sendData)
       dispatch(NewRequestApi(sendData));
       setIsLoading(true)
 

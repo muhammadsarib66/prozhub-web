@@ -52,12 +52,11 @@ export const GetMyRequestApi = createAsyncThunk(
         state.isLoading = false;
         const Data = action.payload
         const {data} = Data
-        if(data){
+        if(Data){
 
+          state.SingleReqObj = data[0];
             state.MyRequestsDetail = data;
-            state.SingleReqObj = data[0];
-        }
-        // console.log("Get Request Successfully");
+          }
       });
       builder.addCase(GetMyRequestApi.rejected, (state, action) => {
         state.isLoading = false;

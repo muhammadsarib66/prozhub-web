@@ -12,33 +12,29 @@ import ViewAll from "./screens/ViewAll screen";
 import Foooter from "./components/Foooter";
 import ServiceDetail from "./screens/ServiceDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {fetchProzHubApi} from "./features/Slicers/Slicer"
 import AcountSetting from "./screens/AccountSetting/AcountSetting";
 import RequestService from "./screens/RequestService";
 import SignUp from "./screens/SignUp";
 import Loading from "./screens/Loading";
-import { LoginApi } from "./features/Slicers/LoginSlicer";
 import { GetMyRequestApi } from "./features/Slicers/MyRequestSlicer";
 import { ToastContainer } from "react-toastify";
 function App() {
   const dispatch = useDispatch();
-  const { isLoggedIn  } = useSelector((state) => state.Slicer);
   const { isLoading  } = useSelector((state) => state.LoginSlicer);
-  const {getService} = useSelector(state=>state.SearchSeviceSlicer )
 
-  const {isUserLogout ,IsUserLogin} = useSelector((state)=> state.LoginSlicer);
+  const {isUserLogout} = useSelector((state)=> state.LoginSlicer);
   const Token =sessionStorage.getItem("token");
   // const {LoginDet} = useSelector((state)=>state.LoginSlicer)
-  // console.log(IsUserLogin);
-  useEffect(()=>{
-    if(Token){
+    useEffect(()=>{
+      if(Token){
 
-      dispatch(GetMyRequestApi());
-      dispatch(fetchProzHubApi())
-    }
- console.log('isLoading', isLoading)
-  },[dispatch])
+        dispatch(GetMyRequestApi());
+        dispatch(fetchProzHubApi())
+      }
+   console.log('isLoading', isLoading)
+    },[dispatch, Token, isLoading])
   
   return (
     <div>
@@ -62,7 +58,7 @@ function App() {
             <>
             
               {/* <Route path="/" element={<Home />} /> */}
-              <Route path="/*" element={<Home />} />
+              <Route  path="/*" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
 
               <Route path="Service" element={<ServiceDetail />} />
