@@ -7,12 +7,14 @@ import moment from "moment";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CloseReqApi } from "../features/Slicers/CloseRequestSlicer";
+import { useNavigate } from "react-router-dom";
 
 const RequestService = () => {
   const { isLoading, MyRequestsDetail, SingleReqObj } = useSelector(
     (state) => state.MyRequestSlicer
     );
     const dispatch = useDispatch();
+    const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [reqid, setReqId] = useState("");
   const [reason, setCloseReqReason] = useState("");
@@ -55,7 +57,7 @@ const RequestService = () => {
             </div>
             <div className="col-sm-6 pb-3 ">
               {" "}
-              <button className=" float-right btn btn-primary">
+              <button onClick={()=>navigate("/home")} className=" float-right btn btn-primary">
                 Create Request
               </button>
             </div>

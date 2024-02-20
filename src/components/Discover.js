@@ -1,11 +1,15 @@
 import React from "react";
 import "../styles/Home.css";
-import Categeory from "../data/fake";
+import { useSelector} from "react-redux";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Loading from "../screens/Loading";
 
 function Discover() {
+  const {getAllServices, isLoading} = useSelector((state) => state.Slicer);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -46,16 +50,20 @@ function Discover() {
         </div>
 
         <div className="row">
+          {
+            isLoading && <Loading />
+          }
           <div>
+
             <Slider {...settings}>
-              {Categeory.map((category , inde) => (
-                <div key={inde}style={{ marginLeft: "10px", marginRight: "10px" }}>
+              {getAllServices?.map((service ) => (
+                <div key={service?._id}style={{ marginLeft: "10px", marginRight: "10px" }}>
                   <div className="categeory_listing  ">
                     <div className="iconBoxs">
                       <i className="fa-regular fa-heart"></i>
                     </div>
 
-                    <h6>{category.title}</h6>
+                    <h6>{service?.serviceName}</h6>
                   </div>
                 </div>
               ))}

@@ -5,14 +5,17 @@ import CategeoryList from "../components/Categeory";
 import Categeory from "../data/fake";
 import Testimonial from "../components/Testimonial";
 import { GetMyRequestApi } from "../features/Slicers/MyRequestSlicer";
-import { useDispatch } from "react-redux";
+import { useSelector ,useDispatch } from "react-redux";
+import { fetchProzHubApi } from "../features/Slicers/Slicer";
 // import Foooter from "../components/Foooter";
 function Home() {
+  
 const dispatch = useDispatch();
 
 
   const User = sessionStorage.getItem('user') 
   useEffect(()=>{
+    dispatch(fetchProzHubApi());
     if(User) {
       dispatch(GetMyRequestApi())
     }
