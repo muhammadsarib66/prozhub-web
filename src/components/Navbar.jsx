@@ -38,7 +38,7 @@ function Navbar() {
       setIsLoading(false);
       dispatch(setUserLogout());
       navigate("/");
-      // window.location.reload();
+      window.location.reload();
     }, 1000);
   };
 
