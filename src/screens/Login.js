@@ -26,9 +26,9 @@ function Login() {
     } else {
       const user = { email, password };
       dispatch(LoginApi(user));
-      navigate("/home")
       if (token) {
         dispatch(GetUser());
+        navigate("/home")
       }
       setEmail(""); // Clear the email input
       setPassword(""); // Clear the password input
@@ -38,8 +38,8 @@ function Login() {
 
   return (
     <div>
-      <div className="login">
-        <div className="login-box">
+      <div className="login h-screen ">
+        <div className="login-box ">
           <div className="logo text-center">
             <img src={logo} alt="img" />
           </div>

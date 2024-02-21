@@ -22,6 +22,8 @@ const dispatch = useDispatch();
   },[dispatch, User])
 
   return (
+
+    
     <div>
       <Main />
       <Discover />

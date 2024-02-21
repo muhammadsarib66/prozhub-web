@@ -59,7 +59,7 @@ function Discover() {
               {getAllServices?.map((service ) => (
                 <div key={service?._id}style={{ marginLeft: "10px", marginRight: "10px" }}>
                   <div className="categeory_listing  ">
-                    <div className="iconBoxs">
+                    <div className="iconBoxs ">
                       <i className="fa-regular fa-heart"></i>
                     </div>
 

@@ -49,7 +49,7 @@ function SignUp() {
 
   return (
     <div>
-      <div className="login">
+      <div className="login h-screen">
         <form onSubmit={handleSubmit} className="login-box">
           <div className="logo text-center">
             <img src={logo} alt="img" />

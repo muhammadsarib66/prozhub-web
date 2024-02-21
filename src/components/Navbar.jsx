@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./Navbar.css"
 import logo from "../images/logo1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { baseUrl } from "../features/Slicers/Slicer";
@@ -9,8 +10,9 @@ import { toast } from "react-toastify";
 import Loading from "../screens/Loading";
 function Navbar() {
   const dispatch = useDispatch();
-  const {ProfileImg} = useSelector((state)=>state.EditProfileSlicer)
-  const [profileImage, setProfileImg] = useState('');
+  const { ProfileImg } = useSelector((state) => state.EditProfileSlicer);
+  const [sticky, setSticky] = useState(false);
+  const [profileImage, setProfileImg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
@@ -18,12 +20,12 @@ function Navbar() {
 
   const User = sessionStorage.getItem("user");
   const Token = sessionStorage.getItem("token");
-  let UserName = ''
-  if (User){
+  let UserName = "";
+  if (User) {
     const { fullName } = JSON.parse(User);
-     UserName = fullName;
-  } 
-  
+    UserName = fullName;
+  }
+
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
@@ -54,26 +56,37 @@ function Navbar() {
     setIsOpen2(!isOpen2);
   };
 
-  useEffect(()=>{
-    if(ProfileImg){
+  useEffect(() => {
+    if (ProfileImg) {
       const User = sessionStorage.getItem("user");
       const { profile } = JSON.parse(User);
-      const img = `${baseUrl}${profile}`
-      setProfileImg(img)
-    }
-    else if(Token) {
-
+      const img = `${baseUrl}${profile}`;
+      setProfileImg(img);
+    } else if (Token) {
       const User = sessionStorage.getItem("user");
       const { profile } = JSON.parse(User);
-      const img = `${baseUrl}${profile}`
-      setProfileImg(img)
+      const img = `${baseUrl}${profile}`;
+      setProfileImg(img);
     }
-    
-  },[ProfileImg,Token])
-
+  }, [ProfileImg, Token]);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      // console.log('event run')
+      window.scrollY > 0 ? setSticky(true) : setSticky(false);
+      // window.scrollY > 0 ? setSticky(true) : setSticky(false)
+      console.log(sticky);
+    });
+  }, []);
   return (
     <>
-      <nav className=" shadow-lg shadow-black fixed w-full top-0 z-[1000] h-fit py-1 items-center bg-white ">
+      <nav
+
+        className={` 
+        ${sticky? "bg-white text-black" : `backdrop-blur-md bg-transparent ${window.location.pathname === '/Home' || window.location.pathname === '/' ? "text-white" : "text-gray-900"} `}
+         fixed top-0
+         font-semibold
+       duration-500  shadow-lg   shadow-black  w-full  z-[1000] h-fit py-1 items-center  `}
+      >
         <div className="hidden  container md:flex justify-between w-full items-center p-0">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
@@ -86,17 +99,17 @@ function Navbar() {
                 </Link>
               )}
             </li>
-            <li className=" cursor-pointer">
+            <li className=" cursor-pointer ">
               {!isOpen ? (
                 <span onClick={handleOpen} className="">
                   <Link to="/explore">
-                    Explore <i className="fas fa-chevron-down "></i>
+                    Explore <i className="text-sm fas fa-chevron-down "></i>
                   </Link>
                 </span>
               ) : (
                 <span onClick={handleOpen1} className="nav-link">
                   <a className="nav-link" href="/">
-                    Explore <i className="fas fa-chevron-up "></i>
+                    Explore <i className="text-sm fas fa-chevron-up "></i>
                   </a>
                 </span>
               )}
@@ -130,7 +143,7 @@ function Navbar() {
                       <i class="fa-solid fa-caret-down"></i>
                     </span>
                     {isOpen2 && (
-                      <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-3">
+                      <div className="absolute gap-2 flex flex-col  top-full left-[-100px] text-sm font-medium  w-44 mt-2 bg-white text-gray-900 border border-gray-200 rounded shadow-lg  p-3">
                         <p
                           className="m-0 hover:text-gray-400"
                           onClick={() => setIsOpen2(false)}
@@ -154,7 +167,7 @@ function Navbar() {
               </>
             ) : (
               <li className="">
-                <Link className="n" to="/login">
+                <Link className="" to="/login">
                   Login
                 </Link>
               </li>
@@ -162,7 +175,7 @@ function Navbar() {
           </ul>
         </div>
         {/* responsive Nav */}
-        <div className=" duration-300 transition container pt-2 md:hidden flex justify-between items-center">
+        <div className=" duration-300 transition  container pt-2 md:hidden flex justify-between items-center">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
           </Link>
@@ -178,7 +191,7 @@ function Navbar() {
                 : " duration-300 transition top-[-1000px]"
             } bg-white w-full h-fit pb-4 duration-500 ease-in-out  transition absolute  z-[100000]`}
           >
-            <div className="container flex text-start justify-start">
+            <div className="container flex text-start justify-start text-gray-900">
               <ul className="flex flex-col gap-3 items-start text-lg font-semibold ">
                 <li onClick={toggleDrawer}>
                   {Token && (
@@ -189,9 +202,7 @@ function Navbar() {
                 </li>
                 <li className=" cursor-pointer">
                   <span onClick={handleOpen} className="">
-                    <Link to="/explore">
-                      Explore
-                    </Link>
+                    <Link to="/explore">Explore</Link>
                   </span>
                 </li>
                 {Token ? (

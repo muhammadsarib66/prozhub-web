@@ -12,8 +12,8 @@ import ViewAll from "./screens/ViewAll screen";
 import Foooter from "./components/Foooter";
 import ServiceDetail from "./screens/ServiceDetail";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import {fetchProzHubApi} from "./features/Slicers/Slicer"
+import { useEffect, useState } from "react";
+import { fetchProzHubApi } from "./features/Slicers/Slicer";
 import AcountSetting from "./screens/AccountSetting/AcountSetting";
 import RequestService from "./screens/RequestService";
 import SignUp from "./screens/SignUp";
@@ -22,43 +22,45 @@ import { GetMyRequestApi } from "./features/Slicers/MyRequestSlicer";
 import { ToastContainer } from "react-toastify";
 function App() {
   const dispatch = useDispatch();
-  const { isLoading  } = useSelector((state) => state.LoginSlicer);
+  const { isLoading } = useSelector((state) => state.LoginSlicer);
+  const [navColor,setNavText] = useState('white')
 
-  const {isUserLogout} = useSelector((state)=> state.LoginSlicer);
-  const Token =sessionStorage.getItem("token");
+  const { isUserLogout } = useSelector((state) => state.LoginSlicer);
+  const Token = sessionStorage.getItem("token");
   // const {LoginDet} = useSelector((state)=>state.LoginSlicer)
-    useEffect(()=>{
-      if(Token){
-
-        dispatch(GetMyRequestApi());
-        dispatch(fetchProzHubApi())
-      }
-   console.log('isLoading', isLoading)
-    },[dispatch, Token, isLoading])
+  useEffect(() => {
+    if (Token) {
+      dispatch(GetMyRequestApi());
+      dispatch(fetchProzHubApi());
+    }
+    console.log("isLoading", isLoading);
   
+  }, [dispatch, Token, isLoading]);
+
+ 
+
   return (
     <div>
-      { isLoading && <Loading/>}
+      {isLoading && <Loading />}
+      
       <Router>
-        <Navbar />
+      <Navbar />
         <Routes>
-          {!Token &&  (
+          {!Token && (
             <>
               <Route path="/signup" element={<SignUp />} />
               <Route path="/*" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/explore" element={<Explore />} />
-
             </>
           )}
 
-          { isUserLogout}
+          {isUserLogout}
 
           {Token && (
             <>
-            
               {/* <Route path="/" element={<Home />} /> */}
-              <Route  path="/*" element={<Home />} />
+              <Route path="/*" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
 
               <Route path="Service" element={<ServiceDetail />} />
@@ -71,7 +73,6 @@ function App() {
         <Foooter />
       </Router>
       <ToastContainer />
-      
     </div>
   );
 }

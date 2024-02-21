@@ -337,9 +337,10 @@ ul {
 }
 .questions-details label {
   margin-left: 10px;
-}
+} 
 .categeory_listing {
-  padding: 10px;
+  padding: 15px 10px;
+  border-radius: 10px !important;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 10px;
   margin: 10px 10px !important;
@@ -347,7 +348,9 @@ ul {
 }
 
 .iconBoxs {
-  background-color: #3062d9;
+  /* background-color: #3062d9; */
+  background-color: #EF9E3C;
+
   color: white;
   width: 50px;
   height: 50px;
@@ -358,4 +361,5 @@ ul {
   align-items: center;
   border-radius: 100%;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
