@@ -185,11 +185,11 @@ function Navbar() {
         </div>
         {
           <div
-            className={` shadow-md md:hidden  ${
+            className={`  shadow-md md:hidden  ${
               isDrawerOpen
-                ? "top-20 duration-300 transition "
+                ? "top-16 duration-300 transition"
                 : " duration-300 transition top-[-1000px]"
-            } bg-white w-full h-fit pb-4 duration-500 ease-in-out  transition absolute  z-[100000]`}
+            } myNAv bg-white w-full h-fit pb-4 duration-500 ease-in-out  transition absolute  z-[100000]`}
           >
             <div className="container flex text-start justify-start text-gray-900">
               <ul className="flex flex-col gap-3 items-start text-lg font-semibold ">

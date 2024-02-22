@@ -20,6 +20,7 @@ import SignUp from "./screens/SignUp";
 import Loading from "./screens/Loading";
 import { GetMyRequestApi } from "./features/Slicers/MyRequestSlicer";
 import { ToastContainer } from "react-toastify";
+import Aos from "aos";
 function App() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.LoginSlicer);
@@ -38,7 +39,12 @@ function App() {
   }, [dispatch, Token, isLoading]);
 
  
-
+  useEffect(()=>{
+    Aos.init({
+      duration: 1000, // Animation duration in milliseconds
+      once: false, // Whether animation should only happen once while scrolling down
+    })
+  })
   return (
     <div>
       {isLoading && <Loading />}

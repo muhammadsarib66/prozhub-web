@@ -1,14 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../images/logo1.png";
+import apple from "../images/appleLogo.png";
+import play from "../images/playStoreLogo.png";
 function Foooter() {
   return (
-    <div className="footer">
+    <div className="footer bg-slate-100 ">
       {" "}
       <div className="container">
-        <div className="row space">
+        <div className="row space  align-items-center">
           <div className="col-sm-3">
             <div className="footer-item">
-              <h6>For Customers</h6>
+              <img src={Logo} alt="logo" />
+              {/* <h6>For Customers</h6>
               <ul>
                 <li>
                   <Link to="/">Find a profesional </Link>
@@ -19,63 +23,73 @@ function Foooter() {
                 <li>
                   <Link to="/Login">Login </Link>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
           <div className="col-sm-3">
-            <div className="footer-item">
-              <h6>For Professionals</h6>
+            <div className="footer-item pt-6 md:pt-0">
+              <h6>Contact Us</h6>
               <ul>
-                <li>
-                  <Link to="/">How it works </Link>
+                <li className="">
+                  <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                  </span>
+                  <Link to="/"> ADDRESS : Apartment Building Suit... </Link>
                 </li>
                 <li>
-                  <Link to="/">Pricing </Link>
+                  <Link to="tel:03103102166">+813100302 </Link>
                 </li>
                 <li>
-                  <Link to="/">Join as a Professional</Link>
+                  <Link to="/">prozhub@gmail.com</Link>
                 </li>
                 <li>
                   <Link to="Login">Help centre</Link>
                 </li>
-                <li>
-                  <Link to="Login">Mobile App</Link>
-                </li>
               </ul>
             </div>
           </div>
           <div className="col-sm-3">
             <div className="footer-item">
-              <h6>About</h6>
+              <h6>Pages</h6>
               <ul>
                 <li>
-                  <Link to="/">About ProzHub</Link>
+                  <a href="#home">Home</a>
                 </li>
                 <li>
-                  <Link to="/">Careers</Link>
+                  <a href="#service">Services</a>
                 </li>
                 <li>
-                  <Link to="/">Affiliates</Link>
+                  <a href="#about">About Us</a>
                 </li>
                 <li>
-                  <Link to="/">Blog</Link>
+                  <a href="#contact">Contact Us </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.termsfeed.com/live/3c226a0f-4cb8-4c3e-a491-cb8e164de9bf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Privacy Policy{" "}
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="col-sm-3">
-            <div className="footer-link">
-              <ul>
-                <li>
-                  <Link to="mailto:abcd@gmail.com">prozhub@gmail.com</Link>
+            <div className="flex gap-5 justify-center md:justify-start">
+              <ul className="flex flex-col gap-2">
+                <li className="text-2xl font-bold">
+                  <Link>Download Our App</Link>
+                </li>
+                <li className="flex  flex-col lg:flex-row gap-2">
+                  <img className="w-28" src={apple} alt="logo1" />
+                  <img className="w-28" src={play} alt="logo2" />
+                  {/* <p>(open 24 hours a day, 7 days a week)</p> */}
                 </li>
                 <li>
-                  <Link to="tell:0305542144">0305542144</Link>
-                  <p>(open 24 hours a day, 7 days a week)</p>
-                </li>
-                <li>
-                  <ul className="social">
+                  <ul className="flex gap-4 justify-center md:justify-end text-2xl py-2">
                     <li>
                       <Link to="/">
                         <i className="fa-brands fa-twitter"></i>
@@ -94,24 +108,26 @@ function Foooter() {
                   </ul>
                 </li>
                 <li>
-                  <select>
-                    <option value="someOption">Some option</option>
-                    <option value="otherOption">Other option</option>
-                    <option value="otherOption">Other option</option>
-                    <option value="otherOption">Other option</option>
-                    <option value="otherOption">Other option</option>
-                    <option value="otherOption">Other option</option>
-                  </select>
+                  <span className="flex justify-center md:justify-end">
+                    <select>
+                      <option value="someOption">Some option</option>
+                      <option value="otherOption">Other option</option>
+                      <option value="otherOption">Other option</option>
+                      <option value="otherOption">Other option</option>
+                      <option value="otherOption">Other option</option>
+                      <option value="otherOption">Other option</option>
+                    </select>
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-sm-12 text-center">
+        <div className="row" style={{paddingBottom: "30px"}}>
+          <div className="col-sm-12 text-center ">
             <hr />
-            <p className="copy">
+            <p className="copy ">
               2024 All &copy;copyright reserve by ProzHub.com
             </p>
           </div>

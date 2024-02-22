@@ -38,8 +38,8 @@ function Login() {
 
   return (
     <div>
-      <div className="login h-screen ">
-        <div className="login-box ">
+      <div className="login h-[50vh]  md:h-screen ">
+        <div data-aos="zoom-out" className="login-box ">
           <div className="logo text-center">
             <img src={logo} alt="img" />
           </div>

@@ -12,6 +12,8 @@
 position: relative;
   overflow: hidden;
   background: url("../images/HEEROO.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   /* background-color: rgba(48, 98, 217, 0.2); */
   
   display: flex;

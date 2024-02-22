@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/Home.css";
 function TestimItem({ item }) {
   return (
-    <div className="commment text-center">
+    <div className="commment bg-slate-50 text-center">
       <div className="testim-image">
         <img src={item.img} alt="img" />
       </div>

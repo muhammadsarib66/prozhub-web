@@ -7,7 +7,7 @@ function Testimonial() {
   return (
     <div className="container-fluid p">
       <div className="text-center">
-        <div className="heading">
+        <div className="heading text-white">
           <h2>Testimonial</h2>
         </div>
       </div>

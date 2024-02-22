@@ -70,8 +70,10 @@ const RequestService = () => {
                   MyRequestsDetail.map((item) => {
                     return (
                       <div
+                      onClick={() => handleViewRequest(item)}
+
                         key={item?.serviceId}
-                        className="mb-4 min-w-full rounded-md flex gap-2 flex-col justify-center items-center  bg-white shadow-md p-4"
+                        className="cursor-pointer  mb-4 min-w-full rounded-md flex gap-2 flex-col justify-center items-center  bg-white shadow-md p-4"
                       >
                         <div className="flex flex-col items-center justify-center m-0">
                           <p className=" font-bold text-lg capitalize ">
@@ -100,14 +102,13 @@ const RequestService = () => {
                         >
                           {item.requestStatus}
                         </div>
-                        <div>
+                        {/* <div>
                           <button
-                            onClick={() => handleViewRequest(item)}
-                            className="btn btn-primary"
+                                                        className="btn btn-primary"
                           >
                             View Request
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                     );
                   })}

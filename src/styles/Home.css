@@ -33,7 +33,7 @@
   padding: 30px 0;
 }
 .explore-details h2 {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 20px 0;
 }
 .icon-box img {
   max-width: 100%;
@@ -119,16 +119,21 @@
   padding: 10px;
   max-width: 300px;
   margin: 10px 10px;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 .testim-box {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  background: linear-gradient(
+  /* background: linear-gradient(
     110deg,
     rgba(48, 98, 217, 1) 0%,
     rgba(48, 98, 217, 1) 27%,
     rgba(255, 255, 255, 1) 100%
-  );
+  ); */
+}
+
+.footer-item img{
+  width: 150px;
+  /* padding-top: 40px; */
 }
 .footer-item li {
   list-style: none;
