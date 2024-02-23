@@ -7,20 +7,33 @@ import moment from "moment";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { CloseReqApi } from "../features/Slicers/CloseRequestSlicer";
-import { useNavigate } from "react-router-dom";
+import { MdHomeRepairService } from "react-icons/md";
 
 const RequestService = () => {
   const { isLoading, MyRequestsDetail, SingleReqObj } = useSelector(
     (state) => state.MyRequestSlicer
-    );
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  );
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [reqid, setReqId] = useState("");
   const [reason, setCloseReqReason] = useState("");
-  // const { getReqData } = useSelector((item) => item.NewRequestSlicer);
+  const [ActiveCard, setActiveCard] = useState("0");
   const [SeeRequest, setSeeRequest] = useState(SingleReqObj);
-  const handleViewRequest = (item) => {
+  let ActiveReq = [];
+  let CloseReq = [];
+  const ActReq = MyRequestsDetail && MyRequestsDetail?.map((item) => {
+    if (item.requestStatus === "Active") {
+      ActiveReq.push(item);
+      return item;
+    } else if (item.requestStatus === "Closed") {
+      CloseReq.push(item);
+      return item;
+    }
+  });
+  // console.log(ActiveReq , CloseReq)
+  const handleViewRequest = (item, ind) => {
+    setActiveCard(ind);
+
     setSeeRequest(item);
     console.log(item);
   };
@@ -34,87 +47,98 @@ const RequestService = () => {
   const RequestClosed = () => {
     const obj = { requestId: reqid, reason };
     dispatch(CloseReqApi(obj));
-    setIsOpen(false)
-    setCloseReqReason('')
+    setIsOpen(false);
+    setCloseReqReason("");
 
     setTimeout(() => {
       dispatch(GetMyRequestApi());
-
     }, 1000);
   };
-
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(GetMyRequestApi());
-  },[dispatch])
+  }, [dispatch]);
   return (
-    <div className="container-fluid  ">
+    <div className="container-fluid h-full m-0">
       {isLoading && <Loading />}
       {!isLoading && (
-        <div className="RequestContainer  container pt-5">
-          <div className=" row">
-            <div className="col-sm-6">
-              <h4>My Reequest</h4>
-            </div>
-            <div className="col-sm-6 pb-3 ">
-              {" "}
-              <button onClick={()=>navigate("/home")} className=" float-right btn btn-primary">
-                Create Request
-              </button>
-            </div>
-          </div>
+        <div className="RequestContainer  ">
           {!SingleReqObj && <h2> Dont have any request</h2>}
           {SingleReqObj && (
-            <div className="row   ">
-              <div className=" col-sm-4  CardBox  max-h-[90vh] overflow-y-scroll py-2 px-4 rounded-md bg-[#edeef1] ">
-                {MyRequestsDetail &&
-                  MyRequestsDetail.map((item) => {
-                    return (
-                      <div
-                      onClick={() => handleViewRequest(item)}
-
-                        key={item?.serviceId}
-                        className="cursor-pointer  mb-4 min-w-full rounded-md flex gap-2 flex-col justify-center items-center  bg-white shadow-md p-4"
-                      >
-                        <div className="flex flex-col items-center justify-center m-0">
-                          <p className=" font-bold text-lg capitalize ">
-                            {item?.serviceId?.serviceName}
-                          </p>
-                          <p className="text-gray-400">
-                            {moment(item.createdOn).format("MMMM Do YYYY")}
-                          </p>
-                        </div>
+            <div className="grid grid-cols-1 md:grid-cols-4   ">
+              <div className="   CardBox shadow-md max-h-[90vh] overflow-hidden    rounded-md bg-slate-100  ">
+                <div className="p-2 bg-blue-950 min-h-20 text-white ">
+                  <p className="text-2xl   font-bold flex items-center gap-2">
+                    {" "}
+                    <MdHomeRepairService /> My Requests{" "}
+                    {MyRequestsDetail && MyRequestsDetail?.length}{" "}
+                  </p>
+                  <div className="text-xs text-gray-600 flex gap-2 py-2">
+                    <p className="bg-green-300 px-2 py-1 rounded-full w-fit">
+                      active requests {ActiveReq?.length}
+                    </p>
+                    <p className="bg-red-300 px-2 py-1 rounded-full w-fit">
+                      closed requests {CloseReq?.length}
+                    </p>
+                  </div>
+                </div>
+                <p className="bg-slate-300 text-sm text-gray-600 py-2 px-3 mb-2 rounded-b-md">
+                  <span className="pr-3">
+                    {/* <i class="fa-solid fa-server"></i> */}
+                    <i class="fa-solid fa-wrench"></i>
+                  </span>
+                  Showing All {MyRequestsDetail && MyRequestsDetail?.length}{" "}
+                  services.
+                </p>
+                <div className="mx-2 my-2 overflow-y-auto h-[80vh] myReqBox">
+                  {MyRequestsDetail &&
+                    MyRequestsDetail?.map((item, ind) => {
+                      return (
                         <div
-                          className={`min-w-fit px-4
+                          onClick={() => handleViewRequest(item, ind)}
+                          key={item?.serviceId}
+                          className={`
+                        
+                        ${ind == ActiveCard && "border-l-4 border-purple-800"}
+                        
+                        cursor-pointer  mb-4 min-w-full rounded-md flex gap-2  justify-around   bg-white shadow-md `}
+                        >
+                          <div className="flex flex-col  justify-center m-0">
+                            <p className=" font-bold text-lg capitalize ">
+                              {item?.serviceId?.serviceName}
+                            </p>
+                            <p className="text-gray-400">
+                              {moment(item.createdOn).format("MMMM Do YYYY")}
+                            </p>
+                          </div>
+                          <div className="flex gap-2  items-center">
+                            {item?.requestStatus}
+                            
+                          <div
+                            className={` 
                         ${
                           item.requestStatus === "Active" &&
-                          "bg-gray-200 text-gray-800"
+                          "bg-green-800 text-gray-800"
                         }
                         ${
                           item.requestStatus === "Hired" &&
-                          "bg-green-200 text-green-800"
+                          "bg-green-700 text-green-800"
                         }
                         ${
                           item.requestStatus === "Closed" &&
-                          "bg-red-200 text-red-800"
+                          "bg-red-800 text-red-800"
                         }
                         
-                           rounded-md font-semibold p-[12px] text-center text-sm`}
-                        >
-                          {item.requestStatus}
-                        </div>
-                        {/* <div>
-                          <button
-                                                        className="btn btn-primary"
+                           rounded-full  h-4 w-4 `}
                           >
-                            View Request
-                          </button>
-                        </div> */}
-                      </div>
-                    );
-                  })}
+                          </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
 
-              <div className="col-sm-8 DetailContainer   w-full">
+              <div className="md:col-span-3 DetailContainer   w-full">
                 <p className="text-xl capitalize font-bold">
                   {SeeRequest?.clientId?.fullName}
                 </p>
@@ -165,16 +189,21 @@ const RequestService = () => {
                   {SeeRequest?.bidBy}/5 professionals has responded{" "}
                   <i className="fa-solid text-gray-300 fa-circle-exclamation"></i>
                 </div>
-                <div className="py-2 ">
-                  {SeeRequest?.questionnaire?.length > 0 && (
+                <div className="py-4 ">
+                  {SeeRequest?.questionnaire?.length > 0 ? (
                     <h4 className="uppercase font-bold"> given Questions </h4>
+                  ) : (
+                    <h4 className="uppercase font-bold">
+                      {" "}
+                      you Dont Have Questions{" "}
+                    </h4>
                   )}
-                  {SeeRequest?.questionnaire?.map((item) => {
+                  {SeeRequest?.questionnaire?.map((item,ind) => {
                     return (
                       <div key={item.questionId} className="pt-2 border-b-2">
                         <p className="font-semibold  text-xl">
                           {" "}
-                          Q: {item.question}{" "}
+                          Q:{ind+1} {item.question}{" "}
                         </p>
                         <p>
                           <span className="font-semibold text-lg"> Ans: </span>{" "}

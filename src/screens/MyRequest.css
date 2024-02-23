@@ -1,39 +1,51 @@
 ::-webkit-scrollbar {
-    width: 18px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: gray;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
-  }
-
-.RequestContainer{
-    height: full;
-    min-height: 90vh;
-    margin-top: 80px;
-    /* margin-bottom: 20px; */
+  /* width: 18px; */
+  display: none;
 }
 
-.CardBox{
-    margin: 0 !important;
-}
-p{
-    margin: 0 !important;
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
-.DetailContainer{
-    padding: 10px 70px !important;
-    p{
-        padding: 5px 0 !important;
-    }
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.RequestContainer {
+  height: full;
+  min-height: 90vh;
+  margin-top: 70px;
+}
+
+.CardBox {
+  margin: 0 !important;
+  padding-bottom: 10px;
+}
+
+.myReqBox{
+padding-bottom: 10px;
+margin-bottom: 10px;
+/* background-color: red !important;  */
+
+  /* overflow: scroll !important;
+  overflow-y: scroll !important;
+  background-color: red !important; */
+
+}
+p {
+  margin: 0 !important;
+}
+
+.DetailContainer {
+  padding: 10px 70px !important;
+  p {
+    padding: 5px 0 !important;
+  }
 }
