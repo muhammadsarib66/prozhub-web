@@ -66,7 +66,7 @@ function App() {
           {Token && (
             <>
               {/* <Route path="/" element={<Home />} /> */}
-              <Route path="/*" element={<Home />} />
+              <Route exact path="/*" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
 
               <Route path="Service" element={<ServiceDetail />} />

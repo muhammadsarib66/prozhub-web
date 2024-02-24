@@ -4,7 +4,7 @@ const ContactUs = () => {
   return (
     <div id="contact" className="container rounded-lg my-10 md:my-20 p-5 min-h-[80vh] bg-slate-50   ">
       <div className="grid grid-cols-1 md:grid-cols-2  ">
-        <div className="max-w-md mx-auto ">
+        <div  className="max-w-md mx-auto ">
           <h1 className="md:hidden  font-bold">
             {" "}
             Contact <span className="text-[#051357]"> Us </span>{" "}
@@ -75,7 +75,7 @@ const ContactUs = () => {
             </div>
           </form>
         </div>
-        <div className="px-4 flex flex-col gap-4 pt-20 md:pt-0">
+        <div data-aos="flip-left" className="px-4 flex flex-col gap-4 pt-20 md:pt-0">
           <h1 className="hidden md:block  font-bold">
             {" "}
             Contact <span className="text-[#051357]"> Us </span>{" "}

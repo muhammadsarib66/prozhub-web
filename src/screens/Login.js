@@ -27,8 +27,10 @@ function Login() {
       const user = { email, password };
       dispatch(LoginApi(user));
       if (token) {
+        navigate('/')
         dispatch(GetUser());
-        navigate("/home")
+      
+        
       }
       setEmail(""); // Clear the email input
       setPassword(""); // Clear the password input

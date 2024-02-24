@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "./Navbar.css"
+import "./Navbar.css";
 import logo from "../images/logo1.png";
 import { useDispatch, useSelector } from "react-redux";
 import { baseUrl } from "../features/Slicers/Slicer";
@@ -80,9 +80,19 @@ function Navbar() {
   return (
     <>
       <nav
-
         className={` 
-        ${sticky? "bg-white text-black" : `backdrop-blur-md bg-transparent ${window.location.pathname === '/Home' || window.location.pathname === '/' ? "text-white" : "text-gray-900"} `}
+        ${
+          sticky
+            ? "bg-white text-black"
+            : `backdrop-blur-md bg-transparent ${
+                window.location.pathname === "/home" ||
+                window.location.pathname === "/Home" ||
+                window.location.pathname === "/*" ||
+                window.location.pathname === "/"
+                  ? "text-white"
+                  : "text-gray-900"
+              } `
+        }
          fixed top-0
          font-semibold
        duration-500  shadow-lg   shadow-black  w-full  z-[1000] h-fit py-1 items-center  `}
@@ -127,7 +137,7 @@ function Navbar() {
                   >
                     <img
                       src={profileImage}
-                      alt="logo"
+                      alt="UserImg"
                       className="w-12 h-12 rounded-full "
                     />
                     {/* {
@@ -175,7 +185,7 @@ function Navbar() {
           </ul>
         </div>
         {/* responsive Nav */}
-        <div className=" duration-300 transition  container pt-2 md:hidden flex justify-between items-center">
+        <div className=" duration-500 transition  container pt-2 md:hidden flex justify-between items-center">
           <Link className="" to="Home">
             <img src={logo} alt="logo" />
           </Link>

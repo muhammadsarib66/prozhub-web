@@ -61,10 +61,12 @@ const RequestService = () => {
     <div className="container-fluid h-full m-0">
       {isLoading && <Loading />}
       {!isLoading && (
-        <div className="RequestContainer  ">
-          {!SingleReqObj && <h2> Dont have any request</h2>}
+        <div className="RequestContainer   ">
+          {!SingleReqObj && <div className=" flex justify-center items-center h-[70vh]">
+            <h2 className="capitalize font-bold text-blue-950 border-b-2 border-blue-950"> Dont have any request</h2>
+            </div>}
           {SingleReqObj && (
-            <div className="grid grid-cols-1 md:grid-cols-4   ">
+            <div  data-aos="zoom-out-up" className=" grid grid-cols-1 md:grid-cols-4   ">
               <div className="   CardBox shadow-md max-h-[90vh] overflow-hidden    rounded-md bg-slate-100  ">
                 <div className="p-2 bg-blue-950 min-h-20 text-white ">
                   <p className="text-2xl   font-bold flex items-center gap-2">
@@ -93,7 +95,7 @@ const RequestService = () => {
                   {MyRequestsDetail &&
                     MyRequestsDetail?.map((item, ind) => {
                       return (
-                        <div
+                        <div 
                           onClick={() => handleViewRequest(item, ind)}
                           key={item?.serviceId}
                           className={`
@@ -138,9 +140,11 @@ const RequestService = () => {
                 </div>
               </div>
 
-              <div className="md:col-span-3 DetailContainer   w-full">
+              <div  className="md:col-span-3 DetailContainer   w-full">
+                      <div className="flex flex-col gap-3 pb-2">
+                        
                 <p className="text-xl capitalize font-bold">
-                  {SeeRequest?.clientId?.fullName}
+                  User: {SeeRequest?.clientId?.fullName}
                 </p>
                 <p className="text-xl capitalize font-semibold">
                   <span className="text-md pr-2">service: </span>{" "}
@@ -151,7 +155,7 @@ const RequestService = () => {
                 </p>
 
                 <p className="py-2 ">
-                  <i className="fa-solid fa-phone-volume text-2xl"></i>{" "}
+                  <i className="fa-solid fa-phone-volume pr-2"></i>{" "}
                   {SeeRequest?.clientId?.phoneNumber}{" "}
                   {SeeRequest.clientId?.isActive ? (
                     <span className="text-xs text-green-400 bg-gray-200 px-2 rounded-md">
@@ -167,10 +171,10 @@ const RequestService = () => {
                   )}
                 </p>
                 <p className="py-2">
-                  <i class="fa-solid fa-envelope text-2xl"></i>{" "}
+                  <i class="fa-solid fa-envelope pr-2"></i>{" "}
                   {SeeRequest?.clientId?.email}
                 </p>
-
+                </div>
                 <div className="flex gap-2 w-fit items-center border rounded p-3">
                   <span>
                     <span className="flex gap-1 items-center">
@@ -187,7 +191,7 @@ const RequestService = () => {
                     </span>
                   </span>
                   {SeeRequest?.bidBy}/5 professionals has responded{" "}
-                  <i className="fa-solid text-gray-300 fa-circle-exclamation"></i>
+                  <i className="fa-solid text-yellow-700 fa-circle-exclamation"></i>
                 </div>
                 <div className="py-4 ">
                   {SeeRequest?.questionnaire?.length > 0 ? (

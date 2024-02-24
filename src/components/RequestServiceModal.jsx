@@ -12,14 +12,18 @@ import {
   HandleGetAnswers,
   HandleServiceId,
 } from "../features/Slicers/GetQuestionnaireSlicer";
+import Loading from "../screens/Loading";
+import { InputGroup , Form } from "react-bootstrap";
+// import { Form } from "react-router-dom";
 function RequestServiceModal() {
   const dispatch = useDispatch();
   const { NewReqModalOpen, NewRequest } = useSelector(
     (state) => state.SearchSeviceSlicer
   );
-  const { getQuestions } = useSelector((state) => state.GetQuestionnaireSlicer);
+  const { getQuestions ,isLoading } = useSelector((state) => state.GetQuestionnaireSlicer);
   const serviceID = NewRequest?._id ?? 0;
-
+  console.log(getQuestions, 'check')
+  
   // const [selectedAnswer, setSelectedAnswer] = useState("");
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -75,24 +79,36 @@ function RequestServiceModal() {
   
   return (
     <>
+
       <Modal show={NewReqModalOpen} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title> {NewRequest.serviceName}</Modal.Title>
+          <Modal.Title >
+
+             <p className=" text-3xl uppercase text-blue-950 font-semibold">
+            {NewRequest.serviceName}
+            </p> 
+            </Modal.Title>
         </Modal.Header>
+      {isLoading ? <Loading />
+        :    
         <Modal.Body>
+
           <div>
+            {getQuestions.length>0 ?
             <div>
-              <h5>
-                Q{currentQuestionIndex + 1}:
-                {getQuestions[currentQuestionIndex]?.question}
+              <div className="flex  pb-2 text-center">
+              <h5 className=" capitalize">
+                <span className="text-md pr-1">Q{currentQuestionIndex + 1}:</span> 
+                {getQuestions[currentQuestionIndex]?.question}?
               </h5>
-              <h6> Answers :</h6>
+                </div>
               <p>
                 {getQuestions[currentQuestionIndex]?.answers.map(
                   (ans, index) => {
                     return (
-                      <div key={index}>
+                      <div className="flex gap-2 items-center pb-2" key={index}>
                         <input
+                        className="w-5 h-5"
                           type="radio"
                           name={`answer-${ans.questionId}`}
                           id={`answer-${ans?._id}`}
@@ -109,16 +125,24 @@ function RequestServiceModal() {
                         <label htmlFor={`answer-${ans.questionId}`}>
                           {ans.answer}
                         </label>
+                 
                       </div>
                     );
                   }
                 )}
               </p>
             </div>
+          :
+          <h4 > No Questions Found</h4> 
+          }
           </div>
           <div></div>
-        </Modal.Body>
+        </Modal.Body>}
         <Modal.Footer>
+          {
+            getQuestions.length>0 ?
+         ( 
+          <>
           <Button
             variant="secondary"
             onClick={handlePrev}
@@ -141,6 +165,13 @@ function RequestServiceModal() {
               Next
             </Button>
           )}
+          </>
+          )
+:
+<Button variant="primary" onClick={HandleSubmit}>
+                Submit
+              </Button>
+        }
         </Modal.Footer>
       </Modal>
     </>
