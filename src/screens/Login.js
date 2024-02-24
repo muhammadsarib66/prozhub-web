@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Login.css";
 import logo from "../images/logo1.png";
 import InputField from "../components/InputField";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginApi } from "../features/Slicers/LoginSlicer";
 import { toast } from "react-toastify";
 import { GetUser } from "../features/Slicers/LoginSlicer";
+import { GetMyRequestApi } from "../features/Slicers/MyRequestSlicer";
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,9 +39,14 @@ function Login() {
     }
   };
 
+useEffect(()=>{
+  if(token){
+    dispatch(GetMyRequestApi())
+  } 
+},[])
   return (
     <div>
-      <div className="login h-[50vh]  md:h-screen ">
+      <div className="login h-[90vh]  md:h-screen ">
         <div data-aos="zoom-out" className="login-box ">
           <div className="logo text-center">
             <img src={logo} alt="img" />
