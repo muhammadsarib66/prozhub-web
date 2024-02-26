@@ -15,8 +15,8 @@ const AboutUs = () => {
               Our Dream is Global Learning Transformation
             </h2>
             <p className="text-base md:px-5 md:tracking-wider md:leading-6 md:text-justify max-h-96 overflow-y-scroll ">
-              At [Your Company Name], we are dedicated to providing [brief
-              description of your company's mission, goals, or purpose]. Our
+              At ProzHub, we are dedicated to providing multiple service to the client 
+              that are ease the People Life. Our
               team is passionate about [describe what your team is passionate
               about, e.g., delivering exceptional service, innovating new
               solutions, etc.]. Founded in [year founded], we have been serving

@@ -75,7 +75,7 @@ function SendNewRequest() {
         <div class="mb-3">
   <label htmlFor="postalcode" class="form-label">Add Postal Code</label>
   <input onChange={handleChange} type="text" class="form-control"  placeholder="Enter Your Postal Code" />
-  <div  class="form-text">We'll never securely save your detail</div>
+  <div  class="form-text">Please add your postal code.</div>
 </div>
         </Modal.Body>
         <Modal.Footer>
