@@ -12,18 +12,7 @@ function Foooter() {
           <div className="col-sm-3">
             <div className="footer-item">
               <img src={Logo} alt="logo" />
-              {/* <h6>For Customers</h6>
-              <ul>
-                <li>
-                  <Link to="/">Find a profesional </Link>
-                </li>
-                <li>
-                  <Link to="/">How it work </Link>
-                </li>
-                <li>
-                  <Link to="/Login">Login </Link>
-                </li>
-              </ul> */}
+             
             </div>
           </div>
           <div className="col-sm-3">
@@ -83,10 +72,9 @@ function Foooter() {
                 <li className="text-2xl font-bold">
                   <Link>Download Our App</Link>
                 </li>
-                <li className="flex  flex-col lg:flex-row gap-2">
+                <li className="flex  sm:flex-col lg:flex-row gap-2">
                   <img className="w-28" src={apple} alt="logo1" />
                   <img className="w-28" src={play} alt="logo2" />
-                  {/* <p>(open 24 hours a day, 7 days a week)</p> */}
                 </li>
                 <li>
                   <ul className="flex gap-4 justify-center md:justify-end text-2xl py-2">

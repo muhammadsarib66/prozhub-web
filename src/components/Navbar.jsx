@@ -73,8 +73,7 @@ function Navbar() {
     window.addEventListener("scroll", () => {
       // console.log('event run')
       window.scrollY > 0 ? setSticky(true) : setSticky(false);
-      // window.scrollY > 0 ? setSticky(true) : setSticky(false)
-      console.log(sticky);
+      // console.log(sticky);
     });
   }, []);
   return (
@@ -140,15 +139,7 @@ function Navbar() {
                       alt="UserImg"
                       className="w-12 h-12 rounded-full "
                     />
-                    {/* {
-                      User ?
-                    
-                    : 
-                    <img
-                      src={userImg}
-                      alt="logo"
-                      className="w-12 h-12 rounded-full "/>
-                  } */}
+                 
                     <span onClick={toggleDropdown}>
                       <i class="fa-solid fa-caret-down"></i>
                     </span>

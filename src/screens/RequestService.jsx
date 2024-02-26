@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { GetMyRequestApi } from "../features/Slicers/MyRequestSlicer";
+import React, { useState } from "react";
+import {
+  GetMyRequestApi,
+  setFilterData,
+  setSingleRequest,
+} from "../features/Slicers/MyRequestSlicer";
 import { useDispatch, useSelector } from "react-redux";
 import "./MyRequest.css";
 import Loading from "./Loading";
@@ -11,16 +15,14 @@ import { MdHomeRepairService } from "react-icons/md";
 import { IoFilterSharp } from "react-icons/io5";
 
 const RequestService = () => {
-  const { isLoading, MyRequestsDetail, SingleReqObj } = useSelector(
+  const { isLoading, MyRequestsDetail, SingleReqObj, FilterData } = useSelector(
     (state) => state.MyRequestSlicer
   );
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const [allReq, setAllReq] = useState(MyRequestsDetail);
   const [reqid, setReqId] = useState("");
   const [reason, setCloseReqReason] = useState("");
   const [ActiveCard, setActiveCard] = useState("0");
-  const [SeeRequest, setSeeRequest] = useState(SingleReqObj);
   const [selectedValue, setSelectedValue] = useState("All");
   let ActiveReq = [];
   let CloseReq = [];
@@ -35,12 +37,10 @@ const RequestService = () => {
         return item;
       }
     });
-  // console.log(ActiveReq , CloseReq)
+
   const handleViewRequest = (item, ind) => {
     setActiveCard(ind);
-
-    setSeeRequest(item);
-    console.log(item);
+    dispatch(setSingleRequest(item));
   };
 
   const handleCloseRequest = (e) => {
@@ -66,21 +66,12 @@ const RequestService = () => {
   };
 
   const handleItemClick = (value) => {
-    const filterData = MyRequestsDetail?.filter(
-      (item) => item.requestStatus === value
-    );
-    if (value === "All") {
-      setAllReq(MyRequestsDetail);
-    } else {
-      setAllReq(filterData);
-    }
+    dispatch(setFilterData(value));
+
     setSelectedValue(value);
     setIsOpen11(!isOpen11); // Update the state with the selected value
   };
-  useEffect(() => {
-    // setSeeRequest(allReq[0]);
-    dispatch(GetMyRequestApi());
-  }, [dispatch]);
+
   return (
     <div className="container-fluid h-full m-0">
       {isLoading && <Loading />}
@@ -173,8 +164,8 @@ const RequestService = () => {
                   services.
                 </p>
                 <div className="mx-2  my-2 overflow-y-auto h-[80vh] myReqBox">
-                  {allReq &&
-                    allReq?.map((item, ind) => {
+                  {FilterData &&
+                    FilterData?.map((item, ind) => {
                       return (
                         <div
                           onClick={() => handleViewRequest(item, ind)}
@@ -223,20 +214,20 @@ const RequestService = () => {
               <div className="md:col-span-3 DetailContainer   w-full">
                 <div className="flex flex-col gap-3 pb-2">
                   <p className="text-xl capitalize font-bold">
-                    User: {SeeRequest?.clientId?.fullName}
+                    User: {SingleReqObj?.clientId?.fullName}
                   </p>
                   <p className="text-xl capitalize font-semibold">
                     <span className="text-md pr-2">service: </span>{" "}
-                    {SeeRequest?.serviceId?.serviceName}{" "}
+                    {SingleReqObj?.serviceId?.serviceName}{" "}
                   </p>
                   <p>
-                    Postal Code : <span> ({SeeRequest?.postalCode}) </span>
+                    Postal Code : <span> ({SingleReqObj?.postalCode}) </span>
                   </p>
 
                   <p className="py-2 ">
                     <i className="fa-solid fa-phone-volume pr-2"></i>{" "}
-                    {SeeRequest?.clientId?.phoneNumber}{" "}
-                    {SeeRequest.clientId?.isActive ? (
+                    {SingleReqObj?.clientId?.phoneNumber}{" "}
+                    {SingleReqObj.clientId?.isActive ? (
                       <span className="text-xs text-green-400 bg-gray-200 px-2 rounded-md">
                         {" "}
                         <i class="fa-solid fa-check"></i> verified{" "}
@@ -251,7 +242,7 @@ const RequestService = () => {
                   </p>
                   <p className="py-2">
                     <i class="fa-solid fa-envelope pr-2"></i>{" "}
-                    {SeeRequest?.clientId?.email}
+                    {SingleReqObj?.clientId?.email}
                   </p>
                 </div>
                 <div className="flex gap-2 w-fit items-center border rounded p-3">
@@ -261,7 +252,7 @@ const RequestService = () => {
                         <div
                           key={index}
                           className={`w-2 h-5 ${
-                            index < SeeRequest?.bidBy
+                            index < SingleReqObj?.bidBy
                               ? "bg-orange-400"
                               : "bg-gray-400"
                           }`}
@@ -269,11 +260,11 @@ const RequestService = () => {
                       ))}
                     </span>
                   </span>
-                  {SeeRequest?.bidBy}/5 professionals has responded{" "}
+                  {SingleReqObj?.bidBy}/5 professionals has responded{" "}
                   <i className="fa-solid text-yellow-700 fa-circle-exclamation"></i>
                 </div>
                 <div className="py-4 ">
-                  {SeeRequest?.questionnaire?.length > 0 ? (
+                  {SingleReqObj?.questionnaire?.length > 0 ? (
                     <h4 className="uppercase font-bold"> given Questions </h4>
                   ) : (
                     <h4 className="uppercase font-bold">
@@ -281,7 +272,7 @@ const RequestService = () => {
                       you Dont Have Questions{" "}
                     </h4>
                   )}
-                  {SeeRequest?.questionnaire?.map((item, ind) => {
+                  {SingleReqObj?.questionnaire?.map((item, ind) => {
                     return (
                       <div key={item.questionId} className="pt-2 border-b-2">
                         <p className="font-semibold  text-xl">
@@ -296,11 +287,11 @@ const RequestService = () => {
                     );
                   })}
                 </div>
-                {SeeRequest?.requestStatus === "Active" && (
+                {SingleReqObj?.requestStatus === "Active" && (
                   <div className="flex justify-center my-4">
                     <button
                       className="btn btn-danger"
-                      onClick={() => handleCloseRequest(SeeRequest?._id)}
+                      onClick={() => handleCloseRequest(SingleReqObj?._id)}
                     >
                       {" "}
                       Close Request!

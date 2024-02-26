@@ -7,6 +7,7 @@ import {  toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 import { NewRequestApi } from '../features/Slicers/NewRequestSlicer';
 import Loading from '../screens/Loading';
+import { GetMyRequestApi } from '../features/Slicers/MyRequestSlicer';
 
 function SendNewRequest() {
   const navigate = useNavigate() 
@@ -31,14 +32,14 @@ function SendNewRequest() {
     const user = JSON.parse(userLoggedString);
     _id = user?._id;
   } else {
-    console.log("No user found"); // or handle the absence of user id accordingly
+    // console.log("No user found"); // or handle the absence of user id accordingly
   }
   const HandleCreateRequeste = ()=>{
     if(Token){
 
       const sendData = {clientId :  _id ,postalCode,  serviceId, questionnaire }
-        // console.log(sendData)
       dispatch(NewRequestApi(sendData));
+      dispatch(GetMyRequestApi());
       setIsLoading(true)
 
       // toast.success("Request Create Successfully")

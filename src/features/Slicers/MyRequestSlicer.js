@@ -3,8 +3,6 @@ import axios from "axios";
 import { baseUrl } from "./Slicer";
 import { toast } from "react-toastify";
 
-
-
 export const GetMyRequestApi = createAsyncThunk(
     "prozhub/GetMyRequests",
     async (arg, { dispatch, getState }) => {
@@ -18,12 +16,10 @@ export const GetMyRequestApi = createAsyncThunk(
           };
 
         const response = await axios.get(`${baseUrl}requests/get-my-requests`,config);
-        console.log(response);
-        // toast.success("Get Request Successfull");
+        // console.log(response);
         return response.data;
       } catch (error) {
         toast.error(error.response.data.message);
-        // console.error(error.response.data.message);
         return error.response.data;
       }
     }
@@ -33,20 +29,34 @@ export const GetMyRequestApi = createAsyncThunk(
     isLoading: false,
     IsError: false,
     error: '',
-    SingleReqObj :''
+    SingleReqObj :'',
+    FilterData : '',
+    ActiveReq: "",
+    CloseReq : ""
   };
   const MyRequestSlicer = createSlice({
     name: "MyRequest",
     initialState,
     reducers: {
-        getSingleReqObject :(state ,action )=>{
-            state.SingleReqObj = action.payload;  
+          setFilterData:(state, action )=>{
+            if(state.MyRequestsDetail){
+                if(action.payload !== "Closed" && action.payload !== "Active"){
+                state.FilterData = state.MyRequestsDetail;
+                }
+                else {
+                  const filter = state.MyRequestsDetail?.filter((item)=> item.requestStatus === action.payload)
+                  state.FilterData = filter
+                }
+         
         }
+      },
+      setSingleRequest :(state,action)=>{
+        state.SingleReqObj = action.payload
+      }
     },
     extraReducers: (builder) => {
       builder.addCase(GetMyRequestApi.pending, (state, action) => {
         state.isLoading = true;
-        // console.log("Getting Request details ");
       });
       builder.addCase(GetMyRequestApi.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -55,7 +65,8 @@ export const GetMyRequestApi = createAsyncThunk(
         if(Data){
 
           state.SingleReqObj = data[0];
-            state.MyRequestsDetail = data;
+          state.MyRequestsDetail = data;
+          state.FilterData = data;
           }
       });
       builder.addCase(GetMyRequestApi.rejected, (state, action) => {
@@ -68,5 +79,5 @@ export const GetMyRequestApi = createAsyncThunk(
     }
   });
 
-  export const {handleGetAllRequests} = MyRequestSlicer.actions;
+  export const {setSingleRequest,setFilterData} = MyRequestSlicer.actions;
   export default MyRequestSlicer.reducer;

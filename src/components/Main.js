@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
-import Categeory from "../data/fake";
 import {
   HandleShowModal,
   SerchServiceApi,
@@ -9,30 +8,20 @@ import { useSelector, useDispatch } from "react-redux";
 import RequestServiceModal from "./RequestServiceModal";
 import { GetQuestionsApi } from "../features/Slicers/GetQuestionnaireSlicer";
 import SendNewRequest from "./SendNewRequest";
-import HeroImg from "../images/HeroImgwebp.webp";
 
 function Main() {
   const dispatch = useDispatch();
   const { getService } = useSelector((state) => state.SearchSeviceSlicer);
   // const { getAllServices } = useSelector((state) => state.Slicer);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  // console.log(getService);
   const [SearchedService, setSearcedService] = useState([]);
 
   const [searchInput, setSearchInput] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
 
   const handleSearchInputChange = (e) => {
     const input = e.target.value;
     setSearchInput(input);
     dispatch(SerchServiceApi(input));
-
-    // Filter category and subcategory titles based on the first letter of the input
-    const filteredSuggestions = Categeory.filter((category) =>
-      category.title.toLowerCase().startsWith(input.toLowerCase())
-    ).map((category) => category.title);
-
-    setSuggestions(filteredSuggestions);
   };
   const handleInputFocus = () => {
     setIsInputFocused(true);
@@ -51,9 +40,9 @@ function Main() {
   }, []);
   return (
     <>
-      <div  id='home' className="main">
+      <div id="home" className="main">
         <div data-aos="zoom-in" className="detail ">
-          <div   className="relative container">
+          <div className="relative container">
             <div className="row">
               <div className="col-sm-12">
                 <h1 className="w-full">

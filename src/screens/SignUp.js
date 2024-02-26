@@ -1,21 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/Login.css";
 import logo from "../images/logo1.png";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
-import User from "../data/User";
 import { useSelector, useDispatch } from "react-redux";
-import { setUserLogin } from "../features/Slicers/Slicer";
-import { useNavigate } from "react-router-dom";
 import { LoginApi, SignUpApi } from "../features/Slicers/LoginSlicer";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 // import { Navigate } from "react-router-dom";
 function SignUp() {
-  const { isLoggedIn } = useSelector((state) => state.Slicer);
-  const { userLogin, IsUserLogin } = useSelector((state) => state.LoginSlicer);
+  // const { isLoggedIn } = useSelector((state) => state.Slicer);
+  // const { userLogin, IsUserLogin } = useSelector((state) => state.LoginSlicer);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [fullName, setName] = useState("");
   const [phoneNumber, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -24,7 +20,7 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!fullName || !phoneNumber || !email || !password|| !confirmPassword) {
+    if (!fullName || !phoneNumber || !email || !password || !confirmPassword) {
       toast.error("Please fill all fields");
       return;
     }
@@ -35,8 +31,7 @@ function SignUp() {
         return;
       }
       const user = { fullName, phoneNumber, email, password };
-      dispatch(SignUpApi(user))
-      console.log(user);
+      dispatch(SignUpApi(user));
 
       setName("");
       setEmail("");
@@ -44,12 +39,11 @@ function SignUp() {
       setPass("");
       setConfPass("");
     }
-
   };
 
   return (
     <div>
-      <div  data-aos="zoom-out-down" className="login h-screen">
+      <div data-aos="zoom-out-down" className="login h-screen">
         <form onSubmit={handleSubmit} className="login-box">
           <div className="logo text-center">
             <img src={logo} alt="img" />
@@ -61,7 +55,7 @@ function SignUp() {
             type="text"
             placeholder={"Enter your Full Name"}
             id="text"
-            value={fullName }
+            value={fullName}
             onChange={(e) => setName(e.target.value)}
           />
           <InputField
@@ -69,12 +63,12 @@ function SignUp() {
             placeholder={"Enter your Phone Number"}
             id={"Number"}
             value={phoneNumber}
-            onChange={(e) =>{
-                const inputValue = e.target.value;
-    // Only allow numeric characters in the phone input field
-    const numericValue = inputValue.replace(/\D/g, '');
-    setPhone(numericValue);
-                }}
+            onChange={(e) => {
+              const inputValue = e.target.value;
+              // Only allow numeric characters in the phone input field
+              const numericValue = inputValue.replace(/\D/g, "");
+              setPhone(numericValue);
+            }}
           />
           <InputField
             type={"email"}
@@ -115,8 +109,6 @@ function SignUp() {
           </div>
         </form>
       </div>
-      {/* <Footer /> */}
-      
     </div>
   );
 }
